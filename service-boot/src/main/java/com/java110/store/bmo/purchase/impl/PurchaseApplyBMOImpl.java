@@ -16,11 +16,11 @@ import org.springframework.stereotype.Service;
 @Service("purchaseApplyBMOImpl")
 public class PurchaseApplyBMOImpl implements IPurchaseApplyBMO {
 
-    @Autowired
+    //@Autowired
     private IPurchaseApplyInnerServiceSMO purchaseApplyInnerServiceSMOImpl;
 
 
-    @Autowired
+   // @Autowired
     private IPurchaseApplyUserInnerServiceSMO purchaseApplyUserInnerServiceSMOImpl;
 
 

@@ -9,6 +9,7 @@ import com.java110.core.base.smo.BaseServiceSMO;
 import com.java110.intf.user.IUserInnerServiceSMO;
 import com.java110.dto.PageDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,7 +25,7 @@ import java.util.List;
  * @Version 1.0
  * add by wuxw 2019/4/24
  **/
-@RestController
+@Service
 public class InspectionInnerServiceSMOImpl extends BaseServiceSMO implements IInspectionInnerServiceSMO {
 
     @Autowired

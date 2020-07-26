@@ -10,6 +10,7 @@ import com.java110.dto.user.UserDto;
 import com.java110.order.dao.ICorderServiceDao;
 import com.java110.utils.util.BeanConvertUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@RestController
+@Service
 public class CorderInnerServiceSMOImpl extends BaseServiceSMO implements ICordersInnerServiceSMO {
 
     @Autowired

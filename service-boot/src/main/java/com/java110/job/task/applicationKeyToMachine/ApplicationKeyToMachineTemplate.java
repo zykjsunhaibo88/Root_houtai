@@ -46,15 +46,15 @@ public class ApplicationKeyToMachineTemplate extends TaskSystemQuartz {
 
     @Autowired
     private IOrderInnerServiceSMO orderInnerServiceSMOImpl;
-    @Autowired
+    //@Autowired
     private IApplicationKeyInnerServiceSMO applicationKeyInnerServiceSMOImpl;
-    @Autowired
+    //@Autowired
     private IMachineInnerServiceSMO machineInnerServiceSMOImpl;
     @Autowired
     private IRoomInnerServiceSMO roomInnerServiceSMOImpl;
 
 
-    @Autowired
+    //@Autowired
     private IMachineTranslateInnerServiceSMO machineTranslateInnerServiceSMOImpl;
 
     @Override

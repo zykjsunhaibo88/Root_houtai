@@ -2,17 +2,17 @@ package com.java110.store.smo.impl;
 
 
 import com.java110.core.base.smo.BaseServiceSMO;
-import com.java110.intf.store.IComplaintInnerServiceSMO;
-import com.java110.intf.community.IRoomInnerServiceSMO;
-import com.java110.intf.user.IUserInnerServiceSMO;
 import com.java110.dto.PageDto;
 import com.java110.dto.RoomDto;
 import com.java110.dto.complaint.ComplaintDto;
+import com.java110.intf.community.IRoomInnerServiceSMO;
+import com.java110.intf.store.IComplaintInnerServiceSMO;
+import com.java110.intf.user.IUserInnerServiceSMO;
 import com.java110.store.dao.IComplaintServiceDao;
 import com.java110.utils.util.BeanConvertUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +25,7 @@ import java.util.List;
  * @Version 1.0
  * add by wuxw 2019/4/24
  **/
-@RestController
+@Service
 public class ComplaintInnerServiceSMOImpl extends BaseServiceSMO implements IComplaintInnerServiceSMO {
 
     @Autowired
@@ -50,7 +50,7 @@ public class ComplaintInnerServiceSMOImpl extends BaseServiceSMO implements ICom
 
         List<ComplaintDto> complaints = BeanConvertUtil.covertBeanList(complaintServiceDaoImpl.getComplaintInfo(BeanConvertUtil.beanCovertMap(complaintDto)), ComplaintDto.class);
 
-        if(complaints == null || complaints.size() == 0){
+        if (complaints == null || complaints.size() == 0) {
             return complaints;
         }
 
@@ -70,7 +70,7 @@ public class ComplaintInnerServiceSMOImpl extends BaseServiceSMO implements ICom
      * 从用户列表中查询用户，将用户中的信息 刷新到 floor对象中
      *
      * @param complainDto 小区费用信息
-     * @param roomDtos 用户列表
+     * @param roomDtos    用户列表
      */
     private void refreshRoomInfo(ComplaintDto complainDto, List<RoomDto> roomDtos) {
         for (RoomDto room : roomDtos) {

@@ -16,11 +16,11 @@ import org.springframework.stereotype.Service;
 @Service("goodsCollectionBMOImpl")
 public class GoodsCollectionBMOImpl implements IGoodsCollectionBMO {
 
-    @Autowired
+    //@Autowired
     private IPurchaseApplyInnerServiceSMO purchaseApplyInnerServiceSMOImpl;
 
 
-    @Autowired
+    //@Autowired
     private IGoodCollectionUserInnerServiceSMO goodCollectionUserInnerServiceSMOImpl;
 
 

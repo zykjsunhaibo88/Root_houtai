@@ -14,6 +14,7 @@ import com.java110.dto.PageDto;
 import com.java110.dto.user.UserDto;
 import com.java110.user.dao.IOwnerServiceDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,7 +30,7 @@ import java.util.Map;
  * @Version 1.0
  * add by wuxw 2019/4/24
  **/
-@RestController
+@Service
 public class OwnerInnerServiceSMOImpl extends BaseServiceSMO implements IOwnerInnerServiceSMO {
 
     @Autowired

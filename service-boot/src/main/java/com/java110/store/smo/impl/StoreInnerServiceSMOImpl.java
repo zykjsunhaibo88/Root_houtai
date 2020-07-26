@@ -1,15 +1,15 @@
 package com.java110.store.smo.impl;
 
-import com.java110.dto.store.StoreAttrDto;
-import com.java110.utils.util.BeanConvertUtil;
 import com.java110.core.base.smo.BaseServiceSMO;
-import com.java110.intf.store.IStoreInnerServiceSMO;
 import com.java110.dto.PageDto;
+import com.java110.dto.store.StoreAttrDto;
 import com.java110.dto.store.StoreDto;
+import com.java110.intf.store.IStoreInnerServiceSMO;
 import com.java110.store.dao.IStoreServiceDao;
+import com.java110.utils.util.BeanConvertUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -21,8 +21,8 @@ import java.util.List;
  * @Version 1.0
  * add by wuxw 2019/9/20
  **/
-@RestController
-public class StoreInnerServiceSMOImpl  extends BaseServiceSMO implements IStoreInnerServiceSMO {
+@Service
+public class StoreInnerServiceSMOImpl extends BaseServiceSMO implements IStoreInnerServiceSMO {
 
     @Autowired
     private IStoreServiceDao storeServiceDaoImpl;
@@ -53,13 +53,13 @@ public class StoreInnerServiceSMOImpl  extends BaseServiceSMO implements IStoreI
         return storeDtos;
     }
 
-    public List<StoreAttrDto> getStoreAttrs(@RequestBody StoreAttrDto storeAttrDto){
+    public List<StoreAttrDto> getStoreAttrs(@RequestBody StoreAttrDto storeAttrDto) {
         List<StoreAttrDto> storeAttrDtos = BeanConvertUtil.covertBeanList(storeServiceDaoImpl.getStoreAttrs(BeanConvertUtil.beanCovertMap(storeAttrDto)), StoreAttrDto.class);
         return storeAttrDtos;
     }
 
 
-    public int getStoreCount(@RequestBody StoreDto storeDto){
+    public int getStoreCount(@RequestBody StoreDto storeDto) {
         return storeServiceDaoImpl.getStoreCount(BeanConvertUtil.beanCovertMap(storeDto));
     }
 

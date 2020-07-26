@@ -10,6 +10,7 @@ import com.java110.dto.fastuser.FastuserDto;
 import com.java110.dto.user.UserDto;
 import com.java110.utils.util.BeanConvertUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,7 +25,7 @@ import java.util.List;
  * @Version 1.0
  * add by wuxw 2019/4/24
  **/
-@RestController
+@Service
 public class FastuserInnerServiceSMOImpl extends BaseServiceSMO implements IFastuserInnerServiceSMO {
 
 

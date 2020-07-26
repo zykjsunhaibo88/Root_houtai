@@ -32,10 +32,10 @@ public class QueryTenantsImpl implements IQueryTenants {
     @Autowired
     private IOwnerRoomRelInnerServiceSMO ownerRoomRelInnerServiceSMOImpl;
 
-    @Autowired
+    //@Autowired
     private IFileRelInnerServiceSMO fileRelInnerServiceSMOImpl;
 
-    @Autowired
+    //@Autowired
     private IFileInnerServiceSMO fileInnerServiceSMOImpl;
 
     @Override

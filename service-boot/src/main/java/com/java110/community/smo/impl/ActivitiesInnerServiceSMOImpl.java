@@ -3,15 +3,14 @@ package com.java110.community.smo.impl;
 
 import com.java110.community.dao.IActivitiesServiceDao;
 import com.java110.core.base.smo.BaseServiceSMO;
-import com.java110.intf.community.IActivitiesInnerServiceSMO;
-import com.java110.intf.user.IUserInnerServiceSMO;
 import com.java110.dto.PageDto;
 import com.java110.dto.activities.ActivitiesDto;
 import com.java110.dto.user.UserDto;
+import com.java110.intf.community.IActivitiesInnerServiceSMO;
+import com.java110.intf.user.IUserInnerServiceSMO;
 import com.java110.utils.util.BeanConvertUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +23,7 @@ import java.util.List;
  * @Version 1.0
  * add by wuxw 2019/4/24
  **/
-@RestController
+@Service(value = "activitiesInnerServiceSMOImpl")
 public class ActivitiesInnerServiceSMOImpl extends BaseServiceSMO implements IActivitiesInnerServiceSMO {
 
     @Autowired
@@ -34,7 +33,7 @@ public class ActivitiesInnerServiceSMOImpl extends BaseServiceSMO implements IAc
     private IUserInnerServiceSMO userInnerServiceSMOImpl;
 
     @Override
-    public List<ActivitiesDto> queryActivitiess(@RequestBody ActivitiesDto activitiesDto) {
+    public List<ActivitiesDto> queryActivitiess(ActivitiesDto activitiesDto) {
 
         //校验是否传了 分页信息
 
@@ -90,7 +89,7 @@ public class ActivitiesInnerServiceSMOImpl extends BaseServiceSMO implements IAc
     }
 
     @Override
-    public int queryActivitiessCount(@RequestBody ActivitiesDto activitiesDto) {
+    public int queryActivitiessCount(ActivitiesDto activitiesDto) {
         return activitiesServiceDaoImpl.queryActivitiessCount(BeanConvertUtil.beanCovertMap(activitiesDto));
     }
 

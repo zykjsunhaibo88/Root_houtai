@@ -16,6 +16,7 @@ import com.java110.po.inspection.InspectionTaskPo;
 import com.java110.utils.util.Assert;
 import com.java110.utils.util.BeanConvertUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,7 +30,7 @@ import java.util.*;
  * @Version 1.0
  * add by wuxw 2019/4/24
  **/
-@RestController
+@Service
 public class InspectionTaskInnerServiceSMOImpl extends BaseServiceSMO implements IInspectionTaskInnerServiceSMO {
 
     @Autowired

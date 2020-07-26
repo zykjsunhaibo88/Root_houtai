@@ -1,16 +1,16 @@
 package com.java110.community.smo.impl;
 
 
-import com.java110.utils.util.BeanConvertUtil;
 import com.java110.community.dao.IRouteServiceDao;
 import com.java110.core.base.smo.BaseServiceSMO;
-import com.java110.intf.community.IRouteInnerServiceSMO;
-import com.java110.intf.user.IUserInnerServiceSMO;
 import com.java110.dto.PageDto;
 import com.java110.dto.service.RouteDto;
+import com.java110.intf.community.IRouteInnerServiceSMO;
+import com.java110.intf.user.IUserInnerServiceSMO;
+import com.java110.utils.util.BeanConvertUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -22,7 +22,7 @@ import java.util.List;
  * @Version 1.0
  * add by wuxw 2019/4/24
  **/
-@RestController
+@Service
 public class RouteInnerServiceSMOImpl extends BaseServiceSMO implements IRouteInnerServiceSMO {
 
     @Autowired
@@ -32,7 +32,7 @@ public class RouteInnerServiceSMOImpl extends BaseServiceSMO implements IRouteIn
     private IUserInnerServiceSMO userInnerServiceSMOImpl;
 
     @Override
-    public List<RouteDto> queryRoutes(@RequestBody  RouteDto routeDto) {
+    public List<RouteDto> queryRoutes(@RequestBody RouteDto routeDto) {
 
         //校验是否传了 分页信息
 
@@ -66,7 +66,8 @@ public class RouteInnerServiceSMOImpl extends BaseServiceSMO implements IRouteIn
 
     @Override
     public int queryRoutesCount(@RequestBody RouteDto routeDto) {
-        return routeServiceDaoImpl.queryRoutesCount(BeanConvertUtil.beanCovertMap(routeDto));    }
+        return routeServiceDaoImpl.queryRoutesCount(BeanConvertUtil.beanCovertMap(routeDto));
+    }
 
     public IRouteServiceDao getRouteServiceDaoImpl() {
         return routeServiceDaoImpl;

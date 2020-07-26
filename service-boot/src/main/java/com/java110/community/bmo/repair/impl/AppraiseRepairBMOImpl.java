@@ -27,7 +27,7 @@ import java.util.Map;
 @Service("appraiseRepairServiceImpl")
 public class AppraiseRepairBMOImpl implements IAppraiseRepairBMO {
 
-    @Autowired
+    //@Autowired
     private IAppraiseInnerServiceSMO appraiseInnerServiceSMOImpl;
     @Autowired
     private IRepairServiceDao repairServiceDaoImpl;

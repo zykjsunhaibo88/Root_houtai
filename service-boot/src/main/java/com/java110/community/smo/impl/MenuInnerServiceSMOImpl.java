@@ -10,6 +10,7 @@ import com.java110.dto.basePrivilege.BasePrivilegeDto;
 import com.java110.dto.menu.MenuDto;
 import com.java110.dto.menuGroup.MenuGroupDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,7 +26,7 @@ import java.util.List;
  * @Version 1.0
  * add by wuxw 2019/4/24
  **/
-@RestController
+@Service
 public class MenuInnerServiceSMOImpl extends BaseServiceSMO implements IMenuInnerServiceSMO {
 
     @Autowired

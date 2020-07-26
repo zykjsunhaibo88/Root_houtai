@@ -9,8 +9,8 @@ import com.java110.po.wechatSmsTemplate.WechatSmsTemplatePo;
 import com.java110.store.dao.IWechatSmsTemplateServiceDao;
 import com.java110.utils.util.BeanConvertUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -22,7 +22,7 @@ import java.util.List;
  * @Version 1.0
  * add by wuxw 2019/4/24
  **/
-@RestController
+@Service
 public class WechatSmsTemplateInnerServiceSMOImpl extends BaseServiceSMO implements IWechatSmsTemplateInnerServiceSMO {
 
     @Autowired

@@ -19,11 +19,11 @@ import java.util.List;
 @Service("resourceOutBMOImpl")
 public class ResourceOutBMOImpl implements IResourceOutBMO {
 
-    @Autowired
+    //@Autowired
     private IPurchaseApplyDetailInnerServiceSMO purchaseApplyDetailInnerServiceSMOImpl;
 
 
-    @Autowired
+    //@Autowired
     private IPurchaseApplyUserInnerServiceSMO purchaseApplyUserInnerServiceSMOImpl;
 
     @Autowired

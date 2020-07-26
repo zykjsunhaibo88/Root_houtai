@@ -1,16 +1,16 @@
 package com.java110.fee.smo.impl;
 
 
-import com.java110.utils.util.BeanConvertUtil;
-import com.java110.fee.dao.IFeeDetailServiceDao;
 import com.java110.core.base.smo.BaseServiceSMO;
-import com.java110.intf.fee.IFeeDetailInnerServiceSMO;
-import com.java110.intf.user.IUserInnerServiceSMO;
 import com.java110.dto.PageDto;
 import com.java110.dto.fee.FeeDetailDto;
+import com.java110.fee.dao.IFeeDetailServiceDao;
+import com.java110.intf.fee.IFeeDetailInnerServiceSMO;
+import com.java110.intf.user.IUserInnerServiceSMO;
+import com.java110.utils.util.BeanConvertUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -22,7 +22,7 @@ import java.util.List;
  * @Version 1.0
  * add by wuxw 2019/4/24
  **/
-@RestController
+@Service
 public class FeeDetailInnerServiceSMOImpl extends BaseServiceSMO implements IFeeDetailInnerServiceSMO {
 
     @Autowired
@@ -32,7 +32,7 @@ public class FeeDetailInnerServiceSMOImpl extends BaseServiceSMO implements IFee
     private IUserInnerServiceSMO userInnerServiceSMOImpl;
 
     @Override
-    public List<FeeDetailDto> queryFeeDetails(@RequestBody  FeeDetailDto feeDetailDto) {
+    public List<FeeDetailDto> queryFeeDetails(@RequestBody FeeDetailDto feeDetailDto) {
 
         //校验是否传了 分页信息
 
@@ -50,7 +50,8 @@ public class FeeDetailInnerServiceSMOImpl extends BaseServiceSMO implements IFee
 
     @Override
     public int queryFeeDetailsCount(@RequestBody FeeDetailDto feeDetailDto) {
-        return feeDetailServiceDaoImpl.queryFeeDetailsCount(BeanConvertUtil.beanCovertMap(feeDetailDto));    }
+        return feeDetailServiceDaoImpl.queryFeeDetailsCount(BeanConvertUtil.beanCovertMap(feeDetailDto));
+    }
 
     public IFeeDetailServiceDao getFeeDetailServiceDaoImpl() {
         return feeDetailServiceDaoImpl;

@@ -54,7 +54,7 @@ public class TranslateOwnerPhotoToMachineTemplate extends TaskSystemQuartz {
     private IOwnerInnerServiceSMO ownerInnerServiceSMOImpl;
     @Autowired
     private IOwnerRoomRelInnerServiceSMO ownerRoomRelInnerServiceSMOImpl;
-    @Autowired
+    //@Autowired
     private IMachineInnerServiceSMO machineInnerServiceSMOImpl;
     @Autowired
     private IRoomInnerServiceSMO roomInnerServiceSMOImpl;
@@ -62,7 +62,7 @@ public class TranslateOwnerPhotoToMachineTemplate extends TaskSystemQuartz {
     @Autowired
     private ICommunityLocationInnerServiceSMO communityLocationInnerServiceSMOImpl;
 
-    @Autowired
+    //@Autowired
     private IMachineTranslateInnerServiceSMO machineTranslateInnerServiceSMOImpl;
 
 

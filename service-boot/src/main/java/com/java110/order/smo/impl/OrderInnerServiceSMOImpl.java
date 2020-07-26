@@ -2,15 +2,15 @@ package com.java110.order.smo.impl;
 
 
 import com.java110.core.base.smo.BaseServiceSMO;
-import com.java110.intf.order.IOrderInnerServiceSMO;
-import com.java110.intf.user.IUserInnerServiceSMO;
 import com.java110.dto.order.BusinessDto;
 import com.java110.dto.order.OrderDto;
+import com.java110.intf.order.IOrderInnerServiceSMO;
+import com.java110.intf.user.IUserInnerServiceSMO;
 import com.java110.order.dao.ICenterServiceDAO;
 import com.java110.utils.util.BeanConvertUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -22,7 +22,7 @@ import java.util.List;
  * @Version 1.0
  * add by wuxw 2019/4/24
  **/
-@RestController
+@Service
 public class OrderInnerServiceSMOImpl extends BaseServiceSMO implements IOrderInnerServiceSMO {
 
     @Autowired
@@ -66,7 +66,7 @@ public class OrderInnerServiceSMOImpl extends BaseServiceSMO implements IOrderIn
         return BeanConvertUtil.covertBeanList(centerServiceDAOImpl.queryOrderByBusinessType(BeanConvertUtil.beanCovertMap(orderDto)), OrderDto.class);
     }
 
-    public int updateBusinessStatusCd(@RequestBody OrderDto orderDto){
+    public int updateBusinessStatusCd(@RequestBody OrderDto orderDto) {
         return centerServiceDAOImpl.updateBusinessStatusCd(BeanConvertUtil.beanCovertMap(orderDto));
     }
 
@@ -81,16 +81,17 @@ public class OrderInnerServiceSMOImpl extends BaseServiceSMO implements IOrderIn
      * @param orderDto 数据对象分享
      * @return OrderDto 对象数据
      */
-    public List<OrderDto> queryApplicationKeyOrders(@RequestBody OrderDto orderDto){
+    public List<OrderDto> queryApplicationKeyOrders(@RequestBody OrderDto orderDto) {
         return BeanConvertUtil.covertBeanList(centerServiceDAOImpl.queryApplicationKeyOrders(BeanConvertUtil.beanCovertMap(orderDto)), OrderDto.class);
     }
 
     /**
      * 查询 同订单 订单项
+     *
      * @param businessDto
      * @return
      */
-    public List<BusinessDto> querySameOrderBusiness(@RequestBody BusinessDto businessDto){
+    public List<BusinessDto> querySameOrderBusiness(@RequestBody BusinessDto businessDto) {
         return BeanConvertUtil.covertBeanList(centerServiceDAOImpl.querySameOrderBusiness(BeanConvertUtil.beanCovertMap(businessDto)), BusinessDto.class);
     }
 

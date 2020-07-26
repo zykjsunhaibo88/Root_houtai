@@ -49,12 +49,12 @@ public class ReTranslateOwnerPhotoMachineTemplate extends TaskSystemQuartz {
     private IOrderInnerServiceSMO orderInnerServiceSMOImpl;
     @Autowired
     private IOwnerInnerServiceSMO ownerInnerServiceSMOImpl;
-    @Autowired
+    //@Autowired
     private IMachineInnerServiceSMO machineInnerServiceSMOImpl;
     @Autowired
     private IRoomInnerServiceSMO roomInnerServiceSMOImpl;
 
-    @Autowired
+    //@Autowired
     private IMachineTranslateInnerServiceSMO machineTranslateInnerServiceSMOImpl;
 
     @Autowired

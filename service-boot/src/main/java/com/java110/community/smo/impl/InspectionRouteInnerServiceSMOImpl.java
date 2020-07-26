@@ -2,15 +2,15 @@ package com.java110.community.smo.impl;
 
 
 import com.java110.community.dao.IInspectionRouteServiceDao;
-import com.java110.utils.util.BeanConvertUtil;
 import com.java110.core.base.smo.BaseServiceSMO;
-import com.java110.intf.community.IInspectionRouteInnerServiceSMO;
-import com.java110.intf.user.IUserInnerServiceSMO;
 import com.java110.dto.PageDto;
 import com.java110.dto.inspectionRoute.InspectionRouteDto;
+import com.java110.intf.community.IInspectionRouteInnerServiceSMO;
+import com.java110.intf.user.IUserInnerServiceSMO;
+import com.java110.utils.util.BeanConvertUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -22,7 +22,7 @@ import java.util.List;
  * @Version 1.0
  * add by wuxw 2019/4/24
  **/
-@RestController
+@Service
 public class InspectionRouteInnerServiceSMOImpl extends BaseServiceSMO implements IInspectionRouteInnerServiceSMO {
 
     @Autowired
@@ -32,7 +32,7 @@ public class InspectionRouteInnerServiceSMOImpl extends BaseServiceSMO implement
     private IUserInnerServiceSMO userInnerServiceSMOImpl;
 
     @Override
-    public List<InspectionRouteDto> queryInspectionRoutes(@RequestBody  InspectionRouteDto inspectionRouteDto) {
+    public List<InspectionRouteDto> queryInspectionRoutes(@RequestBody InspectionRouteDto inspectionRouteDto) {
 
         //校验是否传了 分页信息
 
@@ -52,11 +52,10 @@ public class InspectionRouteInnerServiceSMOImpl extends BaseServiceSMO implement
     }
 
 
-
-
     @Override
     public int queryInspectionRoutesCount(@RequestBody InspectionRouteDto inspectionRouteDto) {
-        return inspectionRouteServiceDaoImpl.queryInspectionRoutesCount(BeanConvertUtil.beanCovertMap(inspectionRouteDto));    }
+        return inspectionRouteServiceDaoImpl.queryInspectionRoutesCount(BeanConvertUtil.beanCovertMap(inspectionRouteDto));
+    }
 
     public IInspectionRouteServiceDao getInspectionRouteServiceDaoImpl() {
         return inspectionRouteServiceDaoImpl;

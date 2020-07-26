@@ -6,6 +6,7 @@ import com.java110.dto.Dict.DictDto;
 import com.java110.dto.Dict.DictQueryDto;
 import com.java110.utils.util.BeanConvertUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,7 +17,7 @@ import java.util.List;
  * Created by hu ping on 10/22/2019
  * <p>
  */
-@RestController
+@Service
 public class DictInnerServiceSMOImpl implements DictInnerServiceSMO {
 
     @Autowired

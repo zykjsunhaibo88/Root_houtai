@@ -8,6 +8,7 @@ import com.java110.user.dao.IUserServiceDao;
 import com.java110.utils.constant.StatusConstant;
 import com.java110.utils.util.BeanConvertUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,7 +20,7 @@ import java.util.Map;
 /**
  * 用户服务实现类
  */
-@RestController
+@Service
 public class UserInnerServiceSMOImpl implements IUserInnerServiceSMO {
 
     @Autowired

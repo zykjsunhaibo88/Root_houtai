@@ -1,17 +1,17 @@
 package com.java110.community.smo.impl;
 
 
-import com.java110.utils.util.BeanConvertUtil;
 import com.java110.community.dao.IServiceServiceDao;
 import com.java110.core.base.smo.BaseServiceSMO;
-import com.java110.intf.community.IServiceInnerServiceSMO;
-import com.java110.intf.user.IUserInnerServiceSMO;
 import com.java110.dto.PageDto;
 import com.java110.dto.service.ServiceDto;
 import com.java110.dto.service.ServiceProvideDto;
+import com.java110.intf.community.IServiceInnerServiceSMO;
+import com.java110.intf.user.IUserInnerServiceSMO;
+import com.java110.utils.util.BeanConvertUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -23,7 +23,7 @@ import java.util.List;
  * @Version 1.0
  * add by wuxw 2019/4/24
  **/
-@RestController
+@Service
 public class ServiceInnerServiceSMOImpl extends BaseServiceSMO implements IServiceInnerServiceSMO {
 
     @Autowired
@@ -48,7 +48,6 @@ public class ServiceInnerServiceSMOImpl extends BaseServiceSMO implements IServi
 
         return services;
     }
-
 
 
     @Override
@@ -106,7 +105,6 @@ public class ServiceInnerServiceSMOImpl extends BaseServiceSMO implements IServi
 
         return services;
     }
-
 
 
     @Override

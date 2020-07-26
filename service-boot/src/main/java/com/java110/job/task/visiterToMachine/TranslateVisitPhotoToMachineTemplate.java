@@ -48,10 +48,10 @@ public class TranslateVisitPhotoToMachineTemplate extends TaskSystemQuartz {
     @Autowired
     private IRoomInnerServiceSMO roomInnerServiceSMOImpl;
 
-    @Autowired
+    //@Autowired
     private IMachineInnerServiceSMO machineInnerServiceSMOImpl;
 
-    @Autowired
+   // @Autowired
     private IMachineTranslateInnerServiceSMO machineTranslateInnerServiceSMOImpl;
 
 

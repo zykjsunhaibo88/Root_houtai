@@ -19,11 +19,11 @@ import java.util.List;
 @Service("getCollectionAuditOrderBMOImpl")
 public class GetCollectionAuditOrderBMOImpl implements IGetCollectionAuditOrderBMO {
 
-    @Autowired
+    //@Autowired
     private IPurchaseApplyInnerServiceSMO purchaseApplyInnerServiceSMOImpl;
 
 
-    @Autowired
+    //@Autowired
     private IGoodCollectionUserInnerServiceSMO goodCollectionUserInnerServiceSMOImpl;
 
 

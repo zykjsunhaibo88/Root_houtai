@@ -1,17 +1,17 @@
 package com.java110.store.smo.impl;
 
 
+import com.java110.core.base.smo.BaseServiceSMO;
+import com.java110.dto.PageDto;
 import com.java110.dto.purchaseApplyDetail.PurchaseApplyDetailDto;
+import com.java110.intf.store.IPurchaseApplyDetailInnerServiceSMO;
+import com.java110.intf.user.IUserInnerServiceSMO;
 import com.java110.po.purchase.PurchaseApplyDetailPo;
 import com.java110.store.dao.IPurchaseApplyDetailServiceDao;
 import com.java110.utils.util.BeanConvertUtil;
-import com.java110.core.base.smo.BaseServiceSMO;
-import com.java110.intf.store.IPurchaseApplyDetailInnerServiceSMO;
-import com.java110.intf.user.IUserInnerServiceSMO;
-import com.java110.dto.PageDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -23,7 +23,7 @@ import java.util.List;
  * @Version 1.0
  * add by wuxw 2019/4/24
  **/
-@RestController
+@Service
 public class PurchaseApplyDetailInnerServiceSMOImpl extends BaseServiceSMO implements IPurchaseApplyDetailInnerServiceSMO {
 
     @Autowired
@@ -33,7 +33,7 @@ public class PurchaseApplyDetailInnerServiceSMOImpl extends BaseServiceSMO imple
     private IUserInnerServiceSMO userInnerServiceSMOImpl;
 
     @Override
-    public List<PurchaseApplyDetailDto> queryPurchaseApplyDetails(@RequestBody  PurchaseApplyDetailDto purchaseApplyDetailDto) {
+    public List<PurchaseApplyDetailDto> queryPurchaseApplyDetails(@RequestBody PurchaseApplyDetailDto purchaseApplyDetailDto) {
 
         //校验是否传了 分页信息
 
@@ -90,7 +90,8 @@ public class PurchaseApplyDetailInnerServiceSMOImpl extends BaseServiceSMO imple
 
     @Override
     public int queryPurchaseApplyDetailsCount(@RequestBody PurchaseApplyDetailDto purchaseApplyDetailDto) {
-        return purchaseApplyDetailServiceDaoImpl.queryPurchaseApplyDetailsCount(BeanConvertUtil.beanCovertMap(purchaseApplyDetailDto));    }
+        return purchaseApplyDetailServiceDaoImpl.queryPurchaseApplyDetailsCount(BeanConvertUtil.beanCovertMap(purchaseApplyDetailDto));
+    }
 
     @Override
     public int updatePurchaseApplyDetail(@RequestBody PurchaseApplyDetailPo purchaseApplyDetailPo) {

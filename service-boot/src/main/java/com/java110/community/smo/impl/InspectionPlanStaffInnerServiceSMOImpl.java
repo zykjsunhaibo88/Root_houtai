@@ -3,14 +3,14 @@ package com.java110.community.smo.impl;
 
 import com.java110.community.dao.IInspectionPlanStaffServiceDao;
 import com.java110.core.base.smo.BaseServiceSMO;
-import com.java110.intf.community.IInspectionPlanStaffInnerServiceSMO;
-import com.java110.intf.user.IUserInnerServiceSMO;
 import com.java110.dto.PageDto;
 import com.java110.dto.inspectionPlanStaff.InspectionPlanStaffDto;
+import com.java110.intf.community.IInspectionPlanStaffInnerServiceSMO;
+import com.java110.intf.user.IUserInnerServiceSMO;
 import com.java110.utils.util.BeanConvertUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -22,7 +22,7 @@ import java.util.List;
  * @Version 1.0
  * add by wuxw 2019/4/24
  **/
-@RestController
+@Service
 public class InspectionPlanStaffInnerServiceSMOImpl extends BaseServiceSMO implements IInspectionPlanStaffInnerServiceSMO {
 
     @Autowired

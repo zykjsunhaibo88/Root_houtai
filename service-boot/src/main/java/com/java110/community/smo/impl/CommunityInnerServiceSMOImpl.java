@@ -12,6 +12,7 @@ import com.java110.dto.community.CommunityDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,7 +22,7 @@ import java.util.Map;
 /**
  * 小区服务内部类
  */
-@RestController
+@Service
 public class CommunityInnerServiceSMOImpl extends BaseServiceSMO implements ICommunityInnerServiceSMO {
     private static Logger logger = LoggerFactory.getLogger(CommunityServiceSMOImpl.class);
 

@@ -21,11 +21,11 @@ import java.util.List;
 @Service("resourceEnterBMOImpl")
 public class ResourceEnterBMOImpl implements IResourceEnterBMO {
 
-    @Autowired
+    //@Autowired
     private IPurchaseApplyDetailInnerServiceSMO purchaseApplyDetailInnerServiceSMOImpl;
 
 
-    @Autowired
+    //@Autowired
     private IPurchaseApplyUserInnerServiceSMO purchaseApplyUserInnerServiceSMOImpl;
 
     @Autowired
