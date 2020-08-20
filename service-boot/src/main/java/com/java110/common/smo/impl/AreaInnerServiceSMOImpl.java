@@ -1,0 +1,36 @@
+package com.java110.common.smo.impl;
+
+import com.java110.common.dao.IAreaServiceDao;
+import com.java110.core.base.smo.BaseServiceSMO;
+import com.java110.dto.area.AreaDto;
+import com.java110.intf.common.IAreaInnerServiceSMO;
+import com.java110.utils.util.BeanConvertUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
+@Service
+public class AreaInnerServiceSMOImpl extends BaseServiceSMO implements IAreaInnerServiceSMO {
+
+    @Autowired
+    private IAreaServiceDao areaServiceDaoImpl;
+
+    @Override
+    public List<AreaDto> getArea(@RequestBody AreaDto areaDto) {
+
+        List<AreaDto> areas = BeanConvertUtil.covertBeanList(areaServiceDaoImpl.getAreas(BeanConvertUtil.beanCovertMap(areaDto)), AreaDto.class);
+
+        return areas;
+    }
+
+    @Override
+    public List<AreaDto> getProvCityArea(@RequestBody AreaDto areaDto) {
+
+        List<AreaDto> areas = BeanConvertUtil.covertBeanList(areaServiceDaoImpl.getProvCityArea(BeanConvertUtil.beanCovertMap(areaDto)), AreaDto.class);
+
+        return areas;
+    }
+}

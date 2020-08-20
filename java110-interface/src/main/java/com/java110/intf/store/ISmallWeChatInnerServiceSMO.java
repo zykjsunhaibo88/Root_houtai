@@ -1,11 +1,6 @@
 package com.java110.intf.store;
 
-import com.java110.config.feign.FeignConfiguration;
 import com.java110.dto.smallWeChat.SmallWeChatDto;
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
@@ -26,7 +21,7 @@ public interface ISmallWeChatInnerServiceSMO {
      * @param smallWeChatDto 数据对象分享
      * @return SmallWeChatDto 对象数据
      */
-    List<SmallWeChatDto> querySmallWeChats( SmallWeChatDto smallWeChatDto);
+    List<SmallWeChatDto> querySmallWeChats(SmallWeChatDto smallWeChatDto);
 
     /**
      * 查询<p>小区楼</p>总记录数
@@ -34,5 +29,5 @@ public interface ISmallWeChatInnerServiceSMO {
      * @param smallWeChatDto 数据对象分享
      * @return 小区下的小区楼记录数
      */
-    int querySmallWeChatsCount( SmallWeChatDto smallWeChatDto);
+    int querySmallWeChatsCount(SmallWeChatDto smallWeChatDto);
 }

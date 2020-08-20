@@ -1,11 +1,6 @@
 package com.java110.intf.community;
 
-import com.java110.config.feign.FeignConfiguration;
 import com.java110.dto.inspectionRoute.InspectionRouteDto;
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
@@ -23,11 +18,10 @@ public interface IInspectionRouteInnerServiceSMO {
     /**
      * <p>查询小区楼信息</p>
      *
-     *
      * @param inspectionRouteDto 数据对象分享
      * @return InspectionRouteDto 对象数据
      */
-    List<InspectionRouteDto> queryInspectionRoutes( InspectionRouteDto inspectionRouteDto);
+    List<InspectionRouteDto> queryInspectionRoutes(InspectionRouteDto inspectionRouteDto);
 
     /**
      * 查询<p>小区楼</p>总记录数
@@ -35,5 +29,5 @@ public interface IInspectionRouteInnerServiceSMO {
      * @param inspectionRouteDto 数据对象分享
      * @return 小区下的小区楼记录数
      */
-    int queryInspectionRoutesCount( InspectionRouteDto inspectionRouteDto);
+    int queryInspectionRoutesCount(InspectionRouteDto inspectionRouteDto);
 }

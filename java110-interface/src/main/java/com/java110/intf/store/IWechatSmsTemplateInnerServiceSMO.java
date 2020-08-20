@@ -1,12 +1,7 @@
 package com.java110.intf.store;
 
-import com.java110.config.feign.FeignConfiguration;
 import com.java110.dto.wechatSmsTemplate.WechatSmsTemplateDto;
 import com.java110.po.wechatSmsTemplate.WechatSmsTemplatePo;
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
@@ -22,11 +17,11 @@ import java.util.List;
 public interface IWechatSmsTemplateInnerServiceSMO {
 
 
-    public int saveWechatSmsTemplate( WechatSmsTemplatePo wechatSmsTemplatePo);
+    public int saveWechatSmsTemplate(WechatSmsTemplatePo wechatSmsTemplatePo);
 
-    public int updateWechatSmsTemplate( WechatSmsTemplatePo wechatSmsTemplatePo);
+    public int updateWechatSmsTemplate(WechatSmsTemplatePo wechatSmsTemplatePo);
 
-    public int deleteWechatSmsTemplate( WechatSmsTemplatePo wechatSmsTemplatePo);
+    public int deleteWechatSmsTemplate(WechatSmsTemplatePo wechatSmsTemplatePo);
 
     /**
      * <p>查询小区楼信息</p>
@@ -34,7 +29,7 @@ public interface IWechatSmsTemplateInnerServiceSMO {
      * @param wechatSmsTemplateDto 数据对象分享
      * @return WechatSmsTemplateDto 对象数据
      */
-    List<WechatSmsTemplateDto> queryWechatSmsTemplates( WechatSmsTemplateDto wechatSmsTemplateDto);
+    List<WechatSmsTemplateDto> queryWechatSmsTemplates(WechatSmsTemplateDto wechatSmsTemplateDto);
 
     /**
      * 查询<p>小区楼</p>总记录数
@@ -42,5 +37,5 @@ public interface IWechatSmsTemplateInnerServiceSMO {
      * @param wechatSmsTemplateDto 数据对象分享
      * @return 小区下的小区楼记录数
      */
-    int queryWechatSmsTemplatesCount( WechatSmsTemplateDto wechatSmsTemplateDto);
+    int queryWechatSmsTemplatesCount(WechatSmsTemplateDto wechatSmsTemplateDto);
 }

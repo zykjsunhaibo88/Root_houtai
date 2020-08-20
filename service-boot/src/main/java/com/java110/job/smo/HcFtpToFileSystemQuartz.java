@@ -1,12 +1,11 @@
 package com.java110.job.smo;
+
+import com.java110.job.dao.IHcFtpFileDAO;
+import com.java110.job.model.FtpTaskLog;
+import com.java110.job.model.FtpTaskLogDetail;
 import com.java110.utils.constant.RuleDomain;
 import com.java110.utils.util.DateUtil;
 import com.java110.utils.util.StringUtil;
-import com.java110.job.dao.IHcFtpFileDAO;
-
-import com.java110.job.model.FtpTaskLog;
-import com.java110.job.model.FtpTaskLogDetail;
-import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +15,9 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
- *
  * @author
- *
  */
-public abstract class HcFtpToFileSystemQuartz{
+public abstract class HcFtpToFileSystemQuartz {
 
     protected static final Logger logger = LoggerFactory.getLogger(HcFtpToFileSystemQuartz.class);
     @Autowired
@@ -53,7 +50,7 @@ public abstract class HcFtpToFileSystemQuartz{
      *
      * @param ftpItemConfigInfo
      */
-    public  void startFtpTask(Map ftpItemConfigInfo) throws Exception {
+    public void startFtpTask(Map ftpItemConfigInfo) throws Exception {
 
         // 这么做是为了，单线程调用，防止多线程导致数据重复处理
         if (!ftpItemConfigInfo.containsKey("RUN_STATE") || "R".equals(ftpItemConfigInfo.get("RUN_STATE"))) {
@@ -69,9 +66,9 @@ public abstract class HcFtpToFileSystemQuartz{
         // 保存任务执行主要日志信息
         //获取LOGID 默认生成规则为tadkid去掉年月日之前的值+66
         String id = ftpItemConfigInfo.get("TASKID").toString();
-        id = id.substring(10,id.length());
-        long logid = Long.parseLong (id+"22");
-        ftpItemConfigInfo.put("logid",logid);
+        id = id.substring(10, id.length());
+        long logid = Long.parseLong(id + "22");
+        ftpItemConfigInfo.put("logid", logid);
         long taskLogID = insertTaskInfo(ftpItemConfigInfo);
 
         ftpItemConfigInfo.put("logid", taskLogID);
@@ -228,7 +225,7 @@ public abstract class HcFtpToFileSystemQuartz{
      */
     protected void saveTaskLogDetail(Map taskInfo) {
         FtpTaskLogDetail logdetail = new FtpTaskLogDetail();
-        logdetail.setId(Long.valueOf(taskInfo.get("logid").toString()+"66"));
+        logdetail.setId(Long.valueOf(taskInfo.get("logid").toString() + "66"));
         logdetail.setLogid(Long.valueOf(taskInfo.get("logid").toString()));
         logdetail.setTaskid(Long.valueOf(taskInfo.get("taskid").toString()));
         logdetail.setState((String) taskInfo.get("threadrunstate"));
@@ -313,13 +310,13 @@ public abstract class HcFtpToFileSystemQuartz{
         List<String> results = new ArrayList<String>();
         String result = "";
         // 文件中使用的日期
-        if (StringUtils.contains(fileName, RuleDomain.REPLAY_TYPE_F)) {
+        if (fileName.contains(RuleDomain.REPLAY_TYPE_F)) {
             result = StringUtil.replace(fileName, RuleDomain.REPLAY_TYPE_F, DateUtil.getFormatTimeString(new Date(), "yyyyMMddHHmm"));
-        } else if (StringUtils.contains(fileName, RuleDomain.REPLAY_TYPE_E)) {
+        } else if (fileName.contains(RuleDomain.REPLAY_TYPE_E)) {
             result = StringUtil.replace(fileName, RuleDomain.REPLAY_TYPE_E, DateUtil.getFormatTimeString(new Date(), "yyyyMMddHH"));
-        } else if (StringUtils.contains(fileName, RuleDomain.REPLAY_TYPE_A)) {
+        } else if (fileName.contains(RuleDomain.REPLAY_TYPE_A)) {
             result = StringUtil.replace(fileName, RuleDomain.REPLAY_TYPE_A, DateUtil.getFormatTimeString(new Date(), "yyyyMMdd"));
-        } else if (StringUtils.contains(fileName == null ? "" : fileName.toLowerCase(), RuleDomain.REPLAY_TYPE_SQL)) {
+        } else if (fileName.contains(RuleDomain.REPLAY_TYPE_SQL)) {
             // 后期改造，文件名如果配置的是sql的话，以sql查询文件名
             List<String> fileNames = this.getPrvncFtpFileDAO().execConfigSql(fileName);
             // if (fileNames != null && fileNames.size() > 0) {

@@ -17,7 +17,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Inherited
-@Import(Java110ListenerDiscoveryRegistrar.class)
+@Import(Java110ListenerServiceDiscoveryRegistrar.class)
 public @interface Java110ListenerServiceDiscovery {
 
     String[] basePackages() default {};

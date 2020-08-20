@@ -2,22 +2,20 @@ package com.java110.api.listener.basePrivilege;
 
 import com.alibaba.fastjson.JSONObject;
 import com.java110.api.listener.AbstractServiceApiListener;
+import com.java110.core.annotation.Java110Listener;
+import com.java110.core.context.DataFlowContext;
+import com.java110.core.event.service.api.ServiceDataFlowEvent;
+import com.java110.core.factory.GenerateCodeFactory;
+import com.java110.dto.basePrivilege.BasePrivilegeDto;
+import com.java110.intf.community.IMenuInnerServiceSMO;
+import com.java110.utils.constant.ServiceCodeBasePrivilegeConstant;
 import com.java110.utils.util.Assert;
 import com.java110.utils.util.BeanConvertUtil;
-import com.java110.core.context.DataFlowContext;
-import com.java110.core.factory.GenerateCodeFactory;
-import com.java110.intf.community.IMenuInnerServiceSMO;
-import com.java110.dto.basePrivilege.BasePrivilegeDto;
-import com.java110.core.event.service.api.ServiceDataFlowEvent;
-import org.apache.commons.lang.StringUtils;
+import com.java110.utils.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import com.java110.utils.constant.ServiceCodeBasePrivilegeConstant;
-
-
-import com.java110.core.annotation.Java110Listener;
 
 /**
  * 保存小区侦听
@@ -58,12 +56,13 @@ public class SaveBasePrivilegeListener extends AbstractServiceApiListener {
 
     /**
      * 刷新 菜单组ID
+     *
      * @param basePrivilegeDto
      */
     private void freshPId(BasePrivilegeDto basePrivilegeDto) {
 
-        if(!StringUtils.isEmpty(basePrivilegeDto.getPId())){
-            return ;
+        if (!StringUtil.isEmpty(basePrivilegeDto.getPId())) {
+            return;
         }
         //生成流水
         basePrivilegeDto.setPId(GenerateCodeFactory.getGeneratorId(GenerateCodeFactory.BASE_PRIVILEGE));
@@ -83,8 +82,6 @@ public class SaveBasePrivilegeListener extends AbstractServiceApiListener {
     public int getOrder() {
         return DEFAULT_ORDER;
     }
-
-
 
 
     public IMenuInnerServiceSMO getMenuInnerServiceSMOImpl() {

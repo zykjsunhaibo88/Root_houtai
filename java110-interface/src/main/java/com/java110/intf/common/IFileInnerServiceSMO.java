@@ -1,11 +1,6 @@
 package com.java110.intf.common;
 
-import com.java110.config.feign.FeignConfiguration;
 import com.java110.dto.file.FileDto;
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
@@ -17,15 +12,17 @@ public interface IFileInnerServiceSMO {
 
     /**
      * 保存文件
+     *
      * @param fileDto 文件数据封装
      * @return true 成功 false 失败
      */
-    String saveFile( FileDto fileDto);
+    String saveFile(FileDto fileDto);
 
     /**
      * 查询文件信息
+     *
      * @param fileDto 文件数据封装
      * @return 文件数据对象
      */
-    List<FileDto> queryFiles( FileDto fileDto);
+    List<FileDto> queryFiles(FileDto fileDto);
 }

@@ -29,17 +29,15 @@ import java.nio.charset.Charset;
  * @auther com.java110.wuxw
  * @mail 928255095@qq.com
  * @date 2016年8月6日
- * @tag
- * "com.java110.api",
- *  "com.java110.common",
+ * @tag "com.java110.api",
+ * "com.java110.common",
  */
 @SpringBootApplication(scanBasePackages = {
         "com.java110.core",
         "com.java110.config.properties.code",
         "com.java110.service",
         "com.java110.db",
-
-
+        "com.java110.common",
         "com.java110.community",
         "com.java110.order",
         "com.java110.fee",
@@ -47,9 +45,11 @@ import java.nio.charset.Charset;
         "com.java110.user",
         "com.java110.front",
         "com.java110.job",
+        "com.java110.api",
 },
         exclude = {
                 LiquibaseAutoConfiguration.class,
+                org.activiti.spring.boot.SecurityAutoConfiguration.class,
                 org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration.class})
 @Java110ListenerDiscovery(listenerPublishClass = ServiceDataFlowEventPublishing.class,
         basePackages = {"com.java110.api.listener"})
@@ -62,7 +62,7 @@ import java.nio.charset.Charset;
                 "com.java110.store.listener",
                 "com.java110.user.listener"
         })
-@EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class})
+//@EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class})
 public class BootApplicationStart {
 
     private static Logger logger = LoggerFactory.getLogger(BootApplicationStart.class);

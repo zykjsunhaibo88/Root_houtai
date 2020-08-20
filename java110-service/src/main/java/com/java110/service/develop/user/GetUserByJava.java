@@ -3,7 +3,7 @@ package com.java110.service.develop.user;
 import com.alibaba.fastjson.JSONObject;
 import com.java110.service.context.DataQuery;
 import com.java110.service.develop.IDevelop;
-import org.apache.commons.lang.StringUtils;
+import com.java110.utils.util.StringUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,25 +30,25 @@ public class GetUserByJava implements IDevelop {
                 "nn.`user_id` userId," +
                 "nn.`start_time` startTime " +
                 "FROM n_notice nn\n" +
-                "WHERE nn.status_cd = '0'" ;
-        if(params.containsKey("noticeId") && !StringUtils.isEmpty(params.getString("noticeId"))){
+                "WHERE nn.status_cd = '0'";
+        if (params.containsKey("noticeId") && !StringUtil.isEmpty(params.getString("noticeId"))) {
             sql += "and nn.`notice_id` = ? ";
             sqlParams.add(params.get("noticeId"));
         }
-        if(params.containsKey("communityId") && !StringUtils.isEmpty(params.getString("communityId"))){
+        if (params.containsKey("communityId") && !StringUtil.isEmpty(params.getString("communityId"))) {
             sql += "and nn.`community_id` = ? ";
             sqlParams.add(params.get("communityId"));
         }
-        if(params.containsKey("userId") && !StringUtils.isEmpty(params.getString("userId"))){
+        if (params.containsKey("userId") && !StringUtil.isEmpty(params.getString("userId"))) {
             sql += "and nn.`user_id` = ? ";
             sqlParams.add(params.get("userId"));
         }
-        if(params.containsKey("title") && !StringUtils.isEmpty(params.getString("title"))){
+        if (params.containsKey("title") && !StringUtil.isEmpty(params.getString("title"))) {
             sql += "and nn.`title` LIKE CONCAT('%',?,'%') ";
             sqlParams.add(params.get("title"));
         }
 
-        List outParam = dataQuery.queryDataBySql(sql,sqlParams);
+        List outParam = dataQuery.queryDataBySql(sql, sqlParams);
 
         JSONObject outObj = new JSONObject();
         outObj.put("notices", outParam);

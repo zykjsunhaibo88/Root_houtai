@@ -1,11 +1,6 @@
 package com.java110.intf.common;
 
-import com.java110.config.feign.FeignConfiguration;
 import com.java110.dto.machine.MachineDto;
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
@@ -26,7 +21,7 @@ public interface IMachineInnerServiceSMO {
      * @param machineDto 数据对象分享
      * @return MachineDto 对象数据
      */
-    List<MachineDto> queryMachines( MachineDto machineDto);
+    List<MachineDto> queryMachines(MachineDto machineDto);
 
     /**
      * 查询<p>小区楼</p>总记录数
@@ -34,5 +29,5 @@ public interface IMachineInnerServiceSMO {
      * @param machineDto 数据对象分享
      * @return 小区下的小区楼记录数
      */
-    int queryMachinesCount( MachineDto machineDto);
+    int queryMachinesCount(MachineDto machineDto);
 }

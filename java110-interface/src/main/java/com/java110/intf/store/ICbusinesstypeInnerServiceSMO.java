@@ -1,11 +1,6 @@
 package com.java110.intf.store;
 
-import com.java110.config.feign.FeignConfiguration;
 import com.java110.dto.businesstype.CbusinesstypeDto;
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
@@ -23,11 +18,10 @@ public interface ICbusinesstypeInnerServiceSMO {
     /**
      * <p>查询小区楼信息</p>
      *
-     *
      * @param cbusinesstypeDto 数据对象分享
      * @return CbusinesstypeDto 对象数据
      */
-    List<CbusinesstypeDto> queryCbusinesstypes( CbusinesstypeDto cbusinesstypeDto);
+    List<CbusinesstypeDto> queryCbusinesstypes(CbusinesstypeDto cbusinesstypeDto);
 
     /**
      * 查询<p>小区楼</p>总记录数
@@ -35,5 +29,5 @@ public interface ICbusinesstypeInnerServiceSMO {
      * @param cbusinesstypeDto 数据对象分享
      * @return 小区下的小区楼记录数
      */
-    int queryCbusinesstypesCount( CbusinesstypeDto cbusinesstypeDto);
+    int queryCbusinesstypesCount(CbusinesstypeDto cbusinesstypeDto);
 }

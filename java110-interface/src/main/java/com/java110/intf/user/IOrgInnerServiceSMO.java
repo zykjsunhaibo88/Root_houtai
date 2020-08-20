@@ -1,8 +1,6 @@
 package com.java110.intf.user;
 
-import com.java110.config.feign.FeignConfiguration;
 import com.java110.dto.org.OrgDto;
-import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,11 +21,10 @@ public interface IOrgInnerServiceSMO {
     /**
      * <p>查询小区楼信息</p>
      *
-     *
      * @param orgDto 数据对象分享
      * @return OrgDto 对象数据
      */
-    List<OrgDto> queryOrgs( OrgDto orgDto);
+    List<OrgDto> queryOrgs(OrgDto orgDto);
 
     /**
      * 查询<p>小区楼</p>总记录数
@@ -35,13 +32,11 @@ public interface IOrgInnerServiceSMO {
      * @param orgDto 数据对象分享
      * @return 小区下的小区楼记录数
      */
-    int queryOrgsCount( OrgDto orgDto);
-
+    int queryOrgsCount(OrgDto orgDto);
 
 
     /**
      * <p>查询上级组织信息</p>
-     *
      *
      * @param orgDto 数据对象分享
      * @return OrgDto 对象数据
