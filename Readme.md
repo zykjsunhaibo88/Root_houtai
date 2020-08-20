@@ -21,12 +21,12 @@
     
 ### 产品
 
-   ![image](docs/operateDoc/img/hc.png)
+   ![image](https://gitee.com/wuxw7/MicroCommunity/raw/master/docs/operateDoc/img/hc.png)
 
     
 ### 系统功能（function） 
 
-   ![image](docs/images/hc_function.png)
+   ![image](https://gitee.com/wuxw7/MicroCommunity/raw/master/docs/images/hc_function.png)
    
    主要系统功能请查看
      
@@ -48,24 +48,22 @@
 ### 运行效果（view）
 1.在浏览器输入 http://localhost:3000/ 如下图
 
-![image](docs/img/login.png)
+![image](https://gitee.com/wuxw7/MicroCommunity/raw/master/docs/img/login.png)
 
     用户名为 wuxw 密码为 admin  如下图
 
     点击登录，进入如下图：
     
-![image](docs/img/index.png)
+![image](https://gitee.com/wuxw7/MicroCommunity/raw/master/docs/img/index.png)
 
-![image](docs/img/owner.png)
+![image](https://gitee.com/wuxw7/MicroCommunity/raw/master/docs/img/owner.png)
 
-2.数据模型图
-![image](dataModel.png)
 
 ### 加入我们（join）
 
-加入微小区交流群随时了解项目进度，和java110开发者零距离沟通 qq群号 827669685，邮箱：928255095@qq.com
+加入HC小区交流群随时了解项目进度，和java110开发者零距离沟通 qq群号 827669685(已满)，799748606（群二），邮箱：928255095@qq.com
 
-![image](docs/images/MicroCommunity_qq.png)
+![image](https://gitee.com/wuxw7/MicroCommunity/raw/master/docs/img/qq.png)
 
 
 
