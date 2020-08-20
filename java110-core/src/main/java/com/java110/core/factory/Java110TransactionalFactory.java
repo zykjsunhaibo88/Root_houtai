@@ -5,7 +5,7 @@ import com.java110.dto.order.OrderDto;
 import com.java110.utils.constant.ServiceConstant;
 import com.java110.utils.factory.ApplicationContextFactory;
 import com.java110.utils.util.StringUtil;
-import org.apache.commons.lang.StringUtils;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.*;
@@ -85,7 +85,7 @@ public class Java110TransactionalFactory {
 
     public static String getOrCreateOId(OrderDto orderDto) {
         //全局事务开启者
-        if (StringUtils.isEmpty(orderDto.getoId())) {
+        if (StringUtil.isEmpty(orderDto.getoId())) {
             createOId(orderDto);
             put(SERVICE_ROLE, ROLE_CREATE);
         } else {
@@ -141,7 +141,7 @@ public class Java110TransactionalFactory {
         }
         JSONObject order = JSONObject.parseObject(responseEntity.getBody());
 
-        if (!order.containsKey("oId") || StringUtils.isEmpty(order.getString("oId"))) {
+        if (!order.containsKey("oId") || StringUtil.isEmpty(order.getString("oId"))) {
             throw new IllegalArgumentException("创建事务失败" + responseEntity.getBody());
         }
         orderDto.setoId(order.getString("oId"));

@@ -1,12 +1,7 @@
 package com.java110.intf.store;
 
-import com.java110.config.feign.FeignConfiguration;
 import com.java110.dto.store.StoreAttrDto;
 import com.java110.dto.store.StoreDto;
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
@@ -17,9 +12,9 @@ import java.util.List;
 
 public interface IStoreInnerServiceSMO {
 
-    public List<StoreDto> getStores( StoreDto storeDto);
+    public List<StoreDto> getStores(StoreDto storeDto);
 
-    public List<StoreAttrDto> getStoreAttrs( StoreAttrDto storeAttrDto);
+    public List<StoreAttrDto> getStoreAttrs(StoreAttrDto storeAttrDto);
 
-    public int getStoreCount( StoreDto storeDto);
+    public int getStoreCount(StoreDto storeDto);
 }

@@ -1,11 +1,6 @@
 package com.java110.intf.community;
 
-import com.java110.config.feign.FeignConfiguration;
 import com.java110.dto.repair.RepairDto;
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
@@ -23,11 +18,10 @@ public interface IRepairInnerServiceSMO {
     /**
      * <p>查询小区楼信息</p>
      *
-     *
      * @param repairDto 数据对象分享
      * @return RepairDto 对象数据
      */
-    List<RepairDto> queryRepairs( RepairDto repairDto);
+    List<RepairDto> queryRepairs(RepairDto repairDto);
 
     /**
      * 查询<p>小区楼</p>总记录数
@@ -35,18 +29,16 @@ public interface IRepairInnerServiceSMO {
      * @param repairDto 数据对象分享
      * @return 小区下的小区楼记录数
      */
-    int queryRepairsCount( RepairDto repairDto);
-
+    int queryRepairsCount(RepairDto repairDto);
 
 
     /**
      * <p>查询小区楼信息</p>
      *
-     *
      * @param repairDto 数据对象分享
      * @return RepairDto 对象数据
      */
-    List<RepairDto> queryStaffRepairs( RepairDto repairDto);
+    List<RepairDto> queryStaffRepairs(RepairDto repairDto);
 
     /**
      * 查询<p>小区楼</p>总记录数
@@ -54,18 +46,16 @@ public interface IRepairInnerServiceSMO {
      * @param repairDto 数据对象分享
      * @return 小区下的小区楼记录数
      */
-    int queryStaffRepairsCount( RepairDto repairDto);
-
+    int queryStaffRepairsCount(RepairDto repairDto);
 
 
     /**
      * <p>查询小区楼信息</p>
      *
-     *
      * @param repairDto 数据对象分享
      * @return RepairDto 对象数据
      */
-    List<RepairDto> queryStaffFinishRepairs( RepairDto repairDto);
+    List<RepairDto> queryStaffFinishRepairs(RepairDto repairDto);
 
     /**
      * 查询<p>小区楼</p>总记录数
@@ -73,5 +63,5 @@ public interface IRepairInnerServiceSMO {
      * @param repairDto 数据对象分享
      * @return 小区下的小区楼记录数
      */
-    int queryStaffFinishRepairsCount( RepairDto repairDto);
+    int queryStaffFinishRepairsCount(RepairDto repairDto);
 }

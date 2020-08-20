@@ -1,11 +1,6 @@
 package com.java110.intf.community;
 
-import com.java110.config.feign.FeignConfiguration;
 import com.java110.dto.fastuser.FastuserDto;
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
@@ -26,7 +21,7 @@ public interface IFastuserInnerServiceSMO {
      * @param fastuserDto 数据对象分享
      * @return ActivitiesDto 对象数据
      */
-    List<FastuserDto> queryFastuser( FastuserDto fastuserDto);
+    List<FastuserDto> queryFastuser(FastuserDto fastuserDto);
 
     /**
      * 查询<p>小区楼</p>总记录数
@@ -34,5 +29,5 @@ public interface IFastuserInnerServiceSMO {
      * @param fastuserDto 数据对象分享
      * @return 小区下的小区楼记录数
      */
-    int queryFastuserCount( FastuserDto fastuserDto);
+    int queryFastuserCount(FastuserDto fastuserDto);
 }

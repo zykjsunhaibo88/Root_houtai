@@ -1,12 +1,7 @@
 package com.java110.intf.common;
 
-import com.java110.config.feign.FeignConfiguration;
 import com.java110.dto.appraise.AppraiseDto;
 import com.java110.po.appraise.AppraisePo;
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
@@ -24,9 +19,9 @@ public interface IAppraiseInnerServiceSMO {
 
     public int saveAppraise(AppraisePo appraisePo);
 
-    public int updateAppraise( AppraisePo appraisePo);
+    public int updateAppraise(AppraisePo appraisePo);
 
-    public int deleteAppraise( AppraisePo appraisePo);
+    public int deleteAppraise(AppraisePo appraisePo);
 
     /**
      * <p>查询小区楼信息</p>
@@ -34,7 +29,7 @@ public interface IAppraiseInnerServiceSMO {
      * @param appraiseDto 数据对象分享
      * @return AppraiseDto 对象数据
      */
-    List<AppraiseDto> queryAppraises( AppraiseDto appraiseDto);
+    List<AppraiseDto> queryAppraises(AppraiseDto appraiseDto);
 
     /**
      * 查询<p>小区楼</p>总记录数
@@ -42,5 +37,5 @@ public interface IAppraiseInnerServiceSMO {
      * @param appraiseDto 数据对象分享
      * @return 小区下的小区楼记录数
      */
-    int queryAppraisesCount( AppraiseDto appraiseDto);
+    int queryAppraisesCount(AppraiseDto appraiseDto);
 }

@@ -1,11 +1,6 @@
 package com.java110.intf.user;
 
-import com.java110.config.feign.FeignConfiguration;
 import com.java110.dto.org.OrgStaffRelDto;
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
@@ -26,7 +21,7 @@ public interface IOrgStaffRelInnerServiceSMO {
      * @param orgStaffRelDto 数据对象分享
      * @return OrgStaffRelDto 对象数据
      */
-    List<OrgStaffRelDto> queryOrgStaffRels( OrgStaffRelDto orgStaffRelDto);
+    List<OrgStaffRelDto> queryOrgStaffRels(OrgStaffRelDto orgStaffRelDto);
 
     /**
      * 查询<p>小区楼</p>总记录数
@@ -34,7 +29,7 @@ public interface IOrgStaffRelInnerServiceSMO {
      * @param orgStaffRelDto 数据对象分享
      * @return 小区下的小区楼记录数
      */
-    int queryOrgStaffRelsCount( OrgStaffRelDto orgStaffRelDto);
+    int queryOrgStaffRelsCount(OrgStaffRelDto orgStaffRelDto);
 
     /**
      * <p>查询部门公司信息</p>
@@ -42,5 +37,5 @@ public interface IOrgStaffRelInnerServiceSMO {
      * @param orgStaffRelDto 员工ids
      * @return OrgStaffRelDto 对象数据
      */
-    List<OrgStaffRelDto> queryOrgInfoByStaffIds( OrgStaffRelDto orgStaffRelDto);
+    List<OrgStaffRelDto> queryOrgInfoByStaffIds(OrgStaffRelDto orgStaffRelDto);
 }

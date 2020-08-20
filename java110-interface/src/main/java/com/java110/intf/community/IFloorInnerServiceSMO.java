@@ -1,12 +1,6 @@
 package com.java110.intf.community;
 
-import com.java110.config.feign.FeignConfiguration;
 import com.java110.dto.FloorDto;
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -29,8 +23,8 @@ public interface IFloorInnerServiceSMO {
      * @param communityId 小区ID
      * @return FloorDto 对象数据
      */
-    List<FloorDto> queryFloors( int page,
-                                int row,
+    List<FloorDto> queryFloors(int page,
+                               int row,
                                String communityId);
 
     /**
@@ -39,7 +33,7 @@ public interface IFloorInnerServiceSMO {
      * @param communityId 小区ID
      * @return 小区下的小区楼记录数
      */
-    int queryFloorsCount( String communityId);
+    int queryFloorsCount(String communityId);
 
 
     /**
@@ -49,7 +43,7 @@ public interface IFloorInnerServiceSMO {
      * @return UnitDto 对象数据
      */
 
-    List<FloorDto> queryFloors( FloorDto floorDto);
+    List<FloorDto> queryFloors(FloorDto floorDto);
 
     /**
      * 查询<p>小区楼</p>总记录数
@@ -57,5 +51,5 @@ public interface IFloorInnerServiceSMO {
      * @param floorDto 数据对象分享
      * @return 小区下的小区楼记录数
      */
-    int queryFloorsCount( FloorDto floorDto);
+    int queryFloorsCount(FloorDto floorDto);
 }

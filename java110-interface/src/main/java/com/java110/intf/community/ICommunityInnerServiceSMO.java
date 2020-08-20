@@ -1,14 +1,9 @@
 package com.java110.intf.community;
 
 
-import com.java110.config.feign.FeignConfiguration;
 import com.java110.dto.CommunityMemberDto;
 import com.java110.dto.community.CommunityAttrDto;
 import com.java110.dto.community.CommunityDto;
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
@@ -27,12 +22,11 @@ public interface ICommunityInnerServiceSMO {
     /**
      * <p>查询小区楼信息</p>
      *
-     *
      * @param communityDto 数据对象分享
      * @return CommunityDto 对象数据
      */
 
-    List<CommunityDto> queryCommunitys( CommunityDto communityDto);
+    List<CommunityDto> queryCommunitys(CommunityDto communityDto);
 
     /**
      * 查询<p>小区楼</p>总记录数
@@ -40,7 +34,7 @@ public interface ICommunityInnerServiceSMO {
      * @param communityDto 数据对象分享
      * @return 小区下的小区楼记录数
      */
-    int queryCommunitysCount( CommunityDto communityDto);
+    int queryCommunitysCount(CommunityDto communityDto);
 
     /**
      * 查询小区成员表
@@ -48,7 +42,7 @@ public interface ICommunityInnerServiceSMO {
      * @param communityMemberDto 小区成员数据封装
      * @return CommunityMemberDto 数据
      */
-    List<CommunityMemberDto> getCommunityMembers( CommunityMemberDto communityMemberDto);
+    List<CommunityMemberDto> getCommunityMembers(CommunityMemberDto communityMemberDto);
 
     /**
      * 查询小区成员数量
@@ -56,16 +50,15 @@ public interface ICommunityInnerServiceSMO {
      * @param communityMemberDto 小区成员数据封装
      * @return CommunityMemberDto 数据
      */
-    int getCommunityMemberCount( CommunityMemberDto communityMemberDto);
+    int getCommunityMemberCount(CommunityMemberDto communityMemberDto);
 
     /**
      * <p>查询小区楼信息</p>
      *
-     *
      * @param communityAttrDto 数据对象分享
      * @return CommunityDto 对象数据
      */
-    List<CommunityAttrDto> getCommunityAttrs( CommunityAttrDto communityAttrDto);
+    List<CommunityAttrDto> getCommunityAttrs(CommunityAttrDto communityAttrDto);
 
     /**
      * 查询<p>小区楼</p>总记录数
@@ -73,6 +66,6 @@ public interface ICommunityInnerServiceSMO {
      * @param communityAttrDto 数据对象分享
      * @return 小区下的小区楼记录数
      */
-    int getCommunityAttrsCount( CommunityAttrDto communityAttrDto);
+    int getCommunityAttrsCount(CommunityAttrDto communityAttrDto);
 
 }

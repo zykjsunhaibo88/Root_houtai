@@ -1,11 +1,5 @@
 package com.java110.intf.code;
 
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -21,12 +15,13 @@ public interface ICodeApi {
 
     /**
      * 生成编码
+     *
      * @param orderInfo 订单信息
-     * @param request request对象
+     * @param request   request对象
      * @return 编码对象
      */
 
-    String generatePost( String orderInfo, HttpServletRequest request);
+    String generatePost(String orderInfo, HttpServletRequest request);
 
     /**
      * 生成 编码
@@ -34,5 +29,5 @@ public interface ICodeApi {
      * @param prefix 前缀
      * @return 编码
      */
-    String generateCode( String prefix);
+    String generateCode(String prefix);
 }

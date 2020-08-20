@@ -1,14 +1,9 @@
 package com.java110.intf.community;
 
 import com.alibaba.fastjson.JSONObject;
-import com.java110.config.feign.FeignConfiguration;
 import com.java110.dto.inspectionTask.InspectionTaskDto;
 import com.java110.po.inspection.InspectionTaskDetailPo;
 import com.java110.po.inspection.InspectionTaskPo;
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
@@ -29,7 +24,7 @@ public interface IInspectionTaskInnerServiceSMO {
      * @param inspectionTaskDto 数据对象分享
      * @return InspectionTaskDto 对象数据
      */
-    List<InspectionTaskDto> queryInspectionTasks( InspectionTaskDto inspectionTaskDto);
+    List<InspectionTaskDto> queryInspectionTasks(InspectionTaskDto inspectionTaskDto);
 
     /**
      * 查询<p>小区楼</p>总记录数
@@ -37,7 +32,7 @@ public interface IInspectionTaskInnerServiceSMO {
      * @param inspectionTaskDto 数据对象分享
      * @return 小区下的小区楼记录数
      */
-    int queryInspectionTasksCount( InspectionTaskDto inspectionTaskDto);
+    int queryInspectionTasksCount(InspectionTaskDto inspectionTaskDto);
 
     /**
      * 生成巡检任务
@@ -45,9 +40,9 @@ public interface IInspectionTaskInnerServiceSMO {
      * @param param
      * @return
      */
-    JSONObject generateInspectionTask( JSONObject param);
+    JSONObject generateInspectionTask(JSONObject param);
 
-    int saveInspectionTask( List<InspectionTaskPo> inspectionTaskPos);
+    int saveInspectionTask(List<InspectionTaskPo> inspectionTaskPos);
 
-    int saveInspectionTaskDetail( List<InspectionTaskDetailPo> inspectionTaskDetailPos);
+    int saveInspectionTaskDetail(List<InspectionTaskDetailPo> inspectionTaskDetailPos);
 }

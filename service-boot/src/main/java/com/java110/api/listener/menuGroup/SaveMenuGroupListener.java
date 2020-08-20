@@ -2,22 +2,20 @@ package com.java110.api.listener.menuGroup;
 
 import com.alibaba.fastjson.JSONObject;
 import com.java110.api.listener.AbstractServiceApiListener;
+import com.java110.core.annotation.Java110Listener;
+import com.java110.core.context.DataFlowContext;
+import com.java110.core.event.service.api.ServiceDataFlowEvent;
+import com.java110.core.factory.GenerateCodeFactory;
+import com.java110.dto.menuGroup.MenuGroupDto;
+import com.java110.intf.community.IMenuInnerServiceSMO;
+import com.java110.utils.constant.ServiceCodeMenuGroupConstant;
 import com.java110.utils.util.Assert;
 import com.java110.utils.util.BeanConvertUtil;
-import com.java110.core.context.DataFlowContext;
-import com.java110.core.factory.GenerateCodeFactory;
-import com.java110.intf.community.IMenuInnerServiceSMO;
-import com.java110.dto.menuGroup.MenuGroupDto;
-import com.java110.core.event.service.api.ServiceDataFlowEvent;
-import org.apache.commons.lang.StringUtils;
+import com.java110.utils.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import com.java110.utils.constant.ServiceCodeMenuGroupConstant;
-
-
-import com.java110.core.annotation.Java110Listener;
 
 /**
  * 保存小区侦听
@@ -28,6 +26,7 @@ public class SaveMenuGroupListener extends AbstractServiceApiListener {
 
     @Autowired
     private IMenuInnerServiceSMO menuInnerServiceSMOImpl;
+
     @Override
     protected void validate(ServiceDataFlowEvent event, JSONObject reqJson) {
         //Assert.hasKeyAndValue(reqJson, "xxx", "xxx");
@@ -57,12 +56,13 @@ public class SaveMenuGroupListener extends AbstractServiceApiListener {
 
     /**
      * 刷新 菜单组ID
+     *
      * @param menuGroupDto
      */
     private void freshGId(MenuGroupDto menuGroupDto) {
 
-        if(!StringUtils.isEmpty(menuGroupDto.getGId())){
-            return ;
+        if (!StringUtil.isEmpty(menuGroupDto.getGId())) {
+            return;
         }
         //生成流水
         menuGroupDto.setGId(GenerateCodeFactory.getGeneratorId(GenerateCodeFactory.MENU_GROUP));

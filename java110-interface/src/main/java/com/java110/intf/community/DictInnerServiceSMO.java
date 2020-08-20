@@ -1,12 +1,7 @@
 package com.java110.intf.community;
 
-import com.java110.config.feign.FeignConfiguration;
 import com.java110.dto.Dict.DictDto;
 import com.java110.dto.Dict.DictQueryDto;
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
@@ -19,6 +14,6 @@ import java.util.List;
 public interface DictInnerServiceSMO {
 
 
-    List<DictDto> queryDict( DictQueryDto queryDto);
+    List<DictDto> queryDict(DictQueryDto queryDto);
 
 }

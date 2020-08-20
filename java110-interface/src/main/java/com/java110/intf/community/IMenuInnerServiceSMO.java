@@ -1,13 +1,8 @@
 package com.java110.intf.community;
 
-import com.java110.config.feign.FeignConfiguration;
 import com.java110.dto.basePrivilege.BasePrivilegeDto;
 import com.java110.dto.menu.MenuDto;
 import com.java110.dto.menuGroup.MenuGroupDto;
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
@@ -28,7 +23,7 @@ public interface IMenuInnerServiceSMO {
      * @param routeDto 数据对象分享
      * @return MenuGroupDto 对象数据
      */
-    List<MenuGroupDto> queryMenuGroups( MenuGroupDto routeDto);
+    List<MenuGroupDto> queryMenuGroups(MenuGroupDto routeDto);
 
     /**
      * 查询<p>小区楼</p>总记录数
@@ -36,7 +31,7 @@ public interface IMenuInnerServiceSMO {
      * @param routeDto 数据对象分享
      * @return 小区下的小区楼记录数
      */
-    int queryMenuGroupsCount( MenuGroupDto routeDto);
+    int queryMenuGroupsCount(MenuGroupDto routeDto);
 
     /**
      * <p>修改APP信息</p>
@@ -44,7 +39,7 @@ public interface IMenuInnerServiceSMO {
      * @param routeDto 数据对象分享
      * @return ServiceDto 对象数据
      */
-    int updateMenuGroup( MenuGroupDto routeDto);
+    int updateMenuGroup(MenuGroupDto routeDto);
 
 
     /**
@@ -53,7 +48,7 @@ public interface IMenuInnerServiceSMO {
      * @param routeDto 数据对象分享
      * @return MenuGroupDto 对象数据
      */
-    int saveMenuGroup( MenuGroupDto routeDto);
+    int saveMenuGroup(MenuGroupDto routeDto);
 
     /**
      * <p>删除APP信息</p>
@@ -61,8 +56,7 @@ public interface IMenuInnerServiceSMO {
      * @param routeDto 数据对象分享
      * @return MenuGroupDto 对象数据
      */
-    int deleteMenuGroup( MenuGroupDto routeDto);
-
+    int deleteMenuGroup(MenuGroupDto routeDto);
 
 
     /**
@@ -71,7 +65,7 @@ public interface IMenuInnerServiceSMO {
      * @param routeDto 数据对象分享
      * @return MenuGroupDto 对象数据
      */
-    List<BasePrivilegeDto> queryBasePrivileges( BasePrivilegeDto routeDto);
+    List<BasePrivilegeDto> queryBasePrivileges(BasePrivilegeDto routeDto);
 
     /**
      * 查询<p>小区楼</p>总记录数
@@ -79,7 +73,7 @@ public interface IMenuInnerServiceSMO {
      * @param routeDto 数据对象分享
      * @return 小区下的小区楼记录数
      */
-    int queryBasePrivilegesCount( BasePrivilegeDto routeDto);
+    int queryBasePrivilegesCount(BasePrivilegeDto routeDto);
 
 
     /**
@@ -88,7 +82,7 @@ public interface IMenuInnerServiceSMO {
      * @param routeDto 数据对象分享
      * @return 小区下的小区楼记录数
      */
-    boolean checkUserHasResource( BasePrivilegeDto routeDto);
+    boolean checkUserHasResource(BasePrivilegeDto routeDto);
 
 
     /**
@@ -97,7 +91,7 @@ public interface IMenuInnerServiceSMO {
      * @param routeDto 数据对象分享
      * @return ServiceDto 对象数据
      */
-    int updateBasePrivilege( BasePrivilegeDto routeDto);
+    int updateBasePrivilege(BasePrivilegeDto routeDto);
 
 
     /**
@@ -106,7 +100,7 @@ public interface IMenuInnerServiceSMO {
      * @param routeDto 数据对象分享
      * @return BasePrivilegeDto 对象数据
      */
-    int saveBasePrivilege( BasePrivilegeDto routeDto);
+    int saveBasePrivilege(BasePrivilegeDto routeDto);
 
     /**
      * <p>删除APP信息</p>
@@ -114,9 +108,7 @@ public interface IMenuInnerServiceSMO {
      * @param routeDto 数据对象分享
      * @return BasePrivilegeDto 对象数据
      */
-    int deleteBasePrivilege( BasePrivilegeDto routeDto);
-
-
+    int deleteBasePrivilege(BasePrivilegeDto routeDto);
 
 
     /**
@@ -125,7 +117,7 @@ public interface IMenuInnerServiceSMO {
      * @param routeDto 数据对象分享
      * @return MenuGroupDto 对象数据
      */
-    List<MenuDto> queryMenus( MenuDto routeDto);
+    List<MenuDto> queryMenus(MenuDto routeDto);
 
     /**
      * 查询<p>菜单</p>总记录数
@@ -133,7 +125,7 @@ public interface IMenuInnerServiceSMO {
      * @param routeDto 数据对象分享
      * @return 菜单记录数
      */
-    int queryMenusCount( MenuDto routeDto);
+    int queryMenusCount(MenuDto routeDto);
 
     /**
      * <p>修改菜单信息</p>
@@ -141,7 +133,7 @@ public interface IMenuInnerServiceSMO {
      * @param routeDto 数据对象分享
      * @return ServiceDto 对象数据
      */
-    int updateMenu( MenuDto routeDto);
+    int updateMenu(MenuDto routeDto);
 
 
     /**
@@ -150,7 +142,7 @@ public interface IMenuInnerServiceSMO {
      * @param routeDto 数据对象分享
      * @return MenuDto 对象数据
      */
-    int saveMenu( MenuDto routeDto);
+    int saveMenu(MenuDto routeDto);
 
     /**
      * <p>删除菜单信息</p>
@@ -158,7 +150,7 @@ public interface IMenuInnerServiceSMO {
      * @param routeDto 数据对象分享
      * @return MenuDto 对象数据
      */
-    int deleteMenu( MenuDto routeDto);
+    int deleteMenu(MenuDto routeDto);
 
 
 }

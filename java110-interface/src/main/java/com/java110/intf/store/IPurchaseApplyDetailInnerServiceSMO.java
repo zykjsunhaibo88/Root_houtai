@@ -1,12 +1,7 @@
 package com.java110.intf.store;
 
-import com.java110.config.feign.FeignConfiguration;
 import com.java110.dto.purchaseApplyDetail.PurchaseApplyDetailDto;
 import com.java110.po.purchase.PurchaseApplyDetailPo;
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
@@ -25,11 +20,10 @@ public interface IPurchaseApplyDetailInnerServiceSMO {
     /**
      * <p>查询小区楼信息</p>
      *
-     *
      * @param purchaseApplyDetailDto 数据对象分享
      * @return PurchaseApplyDetailDto 对象数据
      */
-    List<PurchaseApplyDetailDto> queryPurchaseApplyDetails( PurchaseApplyDetailDto purchaseApplyDetailDto);
+    List<PurchaseApplyDetailDto> queryPurchaseApplyDetails(PurchaseApplyDetailDto purchaseApplyDetailDto);
 
     /**
      * 查询<p>小区楼</p>总记录数
@@ -37,7 +31,7 @@ public interface IPurchaseApplyDetailInnerServiceSMO {
      * @param purchaseApplyDetailDto 数据对象分享
      * @return 小区下的小区楼记录数
      */
-    int queryPurchaseApplyDetailsCount( PurchaseApplyDetailDto purchaseApplyDetailDto);
+    int queryPurchaseApplyDetailsCount(PurchaseApplyDetailDto purchaseApplyDetailDto);
 
     /**
      * 修改采购申请明细
@@ -45,5 +39,5 @@ public interface IPurchaseApplyDetailInnerServiceSMO {
      * @param purchaseApplyDetailPo 数据对象分享
      * @return 小区下的小区楼记录数
      */
-    int updatePurchaseApplyDetail( PurchaseApplyDetailPo purchaseApplyDetailPo);
+    int updatePurchaseApplyDetail(PurchaseApplyDetailPo purchaseApplyDetailPo);
 }
