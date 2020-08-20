@@ -1,38 +1,14 @@
-# HC小区管理系统是前后端完全开源并免费商用的小区物业管理系统，包含小区后端项目，小区前段项目，物业版uni-app和业主版uni-app,最新SQL文件加群获取827669685
+# HC小区管理系统springboot版是前后端完全开源并免费商用的小区物业管理系统，商用建议使用cloud版本
 
 ## 开源代码说明
 
-### HC小区后端代码
- [https://gitee.com/wuxw7/MicroCommunity](https://gitee.com/wuxw7/MicroCommunity)
 ### HC小区前段代码
 [https://gitee.com/java110/MicroCommunityWeb](https://gitee.com/java110/MicroCommunityWeb)
-### HC智慧家庭（业主版）
-[https://gitee.com/java110/WechatOwnerService](https://gitee.com/java110/WechatOwnerService)
-### HC掌上物业（物业版uni-app）
-[https://gitee.com/java110/PropertyApp](https://gitee.com/java110/PropertyApp)
-
-### 分支说明（branch）
-
-分支管理说明，master 为主分支，0.2-stable 为最新稳定分支（推荐使用） 0.1-stable 为前后端不分离版本（不推荐）
 
 
 ### 如何开始（how to start）
 
 [http://www.homecommunity.cn/](http://www.homecommunity.cn/)
-
-### 如何安装（how to install）
-
-方案一、centos7.6一键式自动安装
-
-> yum install -y wget && wget https://dl.winqi.cn/hc/hcInstall.sh && sh hcInstall.sh 您的私网IP
-
-注意：您的私网IP为服务器内网ip 如果服务器只有一个私网ip时可以省略不填写，如果有多个时需要指定
-
-[参考视频](https://www.bilibili.com/video/BV1Dk4y19728/)
-
-方案二、根据需求自助部署
-
-[参考视频](https://www.bilibili.com/video/BV1N7411E7rf/)
 
 ### 操作文档
 
