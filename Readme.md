@@ -21,12 +21,12 @@
     
 ### 产品
 
-   ![image](https://gitee.com/wuxw7/MicroCommunity/raw/master/docs/operateDoc/img/hc.png)
+   ![image](https://gitee.com/wuxw7/MicroCommunity/raw/master/docs/img/hc.png)
 
     
 ### 系统功能（function） 
 
-   ![image](https://gitee.com/wuxw7/MicroCommunity/raw/master/docs/images/hc_function.png)
+   ![image](https://gitee.com/wuxw7/MicroCommunity/raw/master/docs/img/func.png)
    
    主要系统功能请查看
      
