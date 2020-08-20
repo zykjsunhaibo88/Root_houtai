@@ -10,6 +10,10 @@
 
 [http://www.homecommunity.cn/](http://www.homecommunity.cn/)
 
+### 硬件要求
+
+2核cpu 4G内存 80G磁盘 （经测试内存空闲1.3G左右）
+
 ### 操作文档
 
 [操作文档](http://www.homecommunity.cn/operateDoc)
