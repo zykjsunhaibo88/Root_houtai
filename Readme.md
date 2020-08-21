@@ -10,6 +10,13 @@
 
 [http://www.homecommunity.cn/](http://www.homecommunity.cn/)
 
+### 如何安装（how to install）
+
+centos7.6一键式自动安装
+
+> yum install -y wget && wget https://dl.winqi.cn/hc/hcBootInstall.sh && sh hcBootInstall.sh 您的私网IP
+
+
 ### 硬件要求
 
 2核cpu 4G内存 80G磁盘 （经测试内存空闲1.3G左右）
