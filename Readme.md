@@ -1,9 +1,12 @@
-# HC小区管理系统springboot版是前后端完全开源并免费商用的小区物业管理系统，商用建议使用cloud版本
+# HC小区管理系统springboot版是前后端完全开源并免费商用的小区物业管理系统，商用建议使用分布式版本
 
 ## 开源代码说明
 
 ### HC小区前段代码
 [https://gitee.com/java110/MicroCommunityWeb](https://gitee.com/java110/MicroCommunityWeb)
+
+### HC分布式版本
+[https://gitee.com/wuxw7/MicroCommunity](https://gitee.com/wuxw7/MicroCommunity)
 
 
 ### 如何开始（how to start）
