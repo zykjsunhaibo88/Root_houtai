@@ -2,11 +2,12 @@ package com.java110.front.smo.impl;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.java110.core.component.BaseComponentSMO;
+import com.java110.core.context.IPageData;
+import com.java110.front.smo.IPrivilegeServiceSMO;
 import com.java110.utils.constant.ServiceConstant;
 import com.java110.utils.util.Assert;
-import com.java110.core.context.IPageData;
-import com.java110.core.component.BaseComponentSMO;
-import com.java110.front.smo.IPrivilegeServiceSMO;
+import com.java110.utils.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -223,10 +224,34 @@ public class PrivilegeServiceSMOImpl extends BaseComponentSMO implements IPrivil
             return privileges;
         }
 
+
         JSONObject resultObj = JSONObject.parseObject(privileges.getBody().toString());
 
+        JSONArray privilegeArrays = resultObj.getJSONArray("privileges");
+        JSONObject privilegeObj = null;
 
-        return new ResponseEntity<String>(resultObj.getJSONArray("privileges").toJSONString(), HttpStatus.OK);
+        JSONArray tmpPrivilegeArrays = new JSONArray();
+
+        for (int privilegeIndex = 0; privilegeIndex < privilegeArrays.size(); privilegeIndex++) {
+            privilegeObj = privilegeArrays.getJSONObject(privilegeIndex);
+            hasSameData(privilegeObj, tmpPrivilegeArrays);
+        }
+        return new ResponseEntity<String>(tmpPrivilegeArrays.toJSONString(), HttpStatus.OK);
+    }
+
+    private void hasSameData(JSONObject privilegeObj, JSONArray tmpPrivilegeArrays) {
+        JSONObject tmpPrivilegeObj = null;
+        for (int tmpPrivilegeIndex = 0; tmpPrivilegeIndex < tmpPrivilegeArrays.size(); tmpPrivilegeIndex++) {
+            tmpPrivilegeObj = tmpPrivilegeArrays.getJSONObject(tmpPrivilegeIndex);
+            if (privilegeObj.getString("pId").equals(tmpPrivilegeObj.getString("pId"))) {
+                if (!StringUtil.isEmpty(privilegeObj.getString("pgId"))) {
+                    tmpPrivilegeArrays.remove(tmpPrivilegeIndex);
+                    tmpPrivilegeArrays.add(privilegeObj);
+                }
+                return;
+            }
+        }
+        tmpPrivilegeArrays.add(privilegeObj);
     }
 
     @Override
@@ -270,7 +295,7 @@ public class PrivilegeServiceSMOImpl extends BaseComponentSMO implements IPrivil
         JSONObject privilegeInfoObj = JSONObject.parseObject(pd.getReqData());
 
         Assert.jsonObjectHaveKey(privilegeInfoObj, "pgId", "请求报文中未包含权限组ID 节点");
-        Assert.jsonObjectHaveKey(privilegeInfoObj, "pId", "请求报文中未包含权限ID 节点");
+        //Assert.jsonObjectHaveKey(privilegeInfoObj, "pId", "请求报文中未包含权限ID 节点");
 
         ResponseEntity<String> storeInfo = super.getStoreInfo(pd, restTemplate);
 
@@ -297,7 +322,11 @@ public class PrivilegeServiceSMOImpl extends BaseComponentSMO implements IPrivil
         Assert.hasLength(pd.getUserId(), "用户未登录请先登录");
 
         JSONObject privilegeInfoObj = JSONObject.parseObject(pd.getReqData());
-        Assert.jsonObjectHaveKey(privilegeInfoObj, "staffId", "请求报文中未包含员工ID 节点");
+        //Assert.jsonObjectHaveKey(privilegeInfoObj, "staffId", "请求报文中未包含员工ID 节点");
+
+        if (!privilegeInfoObj.containsKey("staffId")) {
+            privilegeInfoObj.put("staffId", pd.getUserId());
+        }
 
         ResponseEntity<String> storeInfo = super.getStoreInfo(pd, restTemplate);
 
@@ -318,6 +347,14 @@ public class PrivilegeServiceSMOImpl extends BaseComponentSMO implements IPrivil
         JSONObject resultObj = JSONObject.parseObject(privilegeGroup.getBody().toString());
 
         JSONArray privileges = resultObj.getJSONArray("privileges");
+
+        JSONArray tmpPrivilegeArrays = new JSONArray();
+
+        JSONObject privilegeObj = null;
+        for (int privilegeIndex = 0; privilegeIndex < privileges.size(); privilegeIndex++) {
+            privilegeObj = privileges.getJSONObject(privilegeIndex);
+            hasSameData(privilegeObj, tmpPrivilegeArrays);
+        }
 
         JSONObject resObj = new JSONObject();
         resObj.put("datas", privileges);

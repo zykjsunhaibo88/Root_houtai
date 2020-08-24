@@ -8,18 +8,16 @@ import com.java110.core.annotation.Java110Listener;
 import com.java110.core.context.DataFlowContext;
 import com.java110.core.event.service.api.ServiceDataFlowEvent;
 import com.java110.core.factory.GenerateCodeFactory;
-import com.java110.core.factory.SendSmsFactory;
+import com.java110.dto.community.CommunityDto;
+import com.java110.dto.owner.OwnerAppUserDto;
+import com.java110.dto.owner.OwnerDto;
 import com.java110.intf.common.IFileInnerServiceSMO;
 import com.java110.intf.common.ISmsInnerServiceSMO;
 import com.java110.intf.community.ICommunityInnerServiceSMO;
 import com.java110.intf.user.IOwnerAppUserInnerServiceSMO;
 import com.java110.intf.user.IOwnerInnerServiceSMO;
 import com.java110.intf.user.IUserInnerServiceSMO;
-import com.java110.dto.community.CommunityDto;
-import com.java110.dto.msg.SmsDto;
-import com.java110.dto.owner.OwnerAppUserDto;
-import com.java110.dto.owner.OwnerDto;
-import com.java110.utils.cache.MappingCache;
+import com.java110.utils.cache.CommonCache;
 import com.java110.utils.constant.ServiceCodeConstant;
 import com.java110.utils.util.Assert;
 import com.java110.utils.util.BeanConvertUtil;
@@ -40,8 +38,8 @@ import java.util.List;
  * add by wuxw 2019/4/26
  **/
 
-@Java110Listener("ownerRegisterListener")
-public class OwnerRegisterListener extends AbstractServiceApiPlusListener {
+@Java110Listener("ownerRegisterWxPhotoListener")
+public class OwnerRegisterWxPhotoListener extends AbstractServiceApiPlusListener {
 
 
     private static final int DEFAULT_SEQ_COMMUNITY_MEMBER = 2;
@@ -70,11 +68,11 @@ public class OwnerRegisterListener extends AbstractServiceApiPlusListener {
     @Autowired
     private IUserInnerServiceSMO userInnerServiceSMOImpl;
 
-    private static Logger logger = LoggerFactory.getLogger(OwnerRegisterListener.class);
+    private static Logger logger = LoggerFactory.getLogger(OwnerRegisterWxPhotoListener.class);
 
     @Override
     public String getServiceCode() {
-        return ServiceCodeConstant.SERVICE_CODE_OWNER_REGISTER;
+        return ServiceCodeConstant.SERVICE_CODE_OWNER_REGISTER_WX_PHOTO;
     }
 
     @Override
@@ -87,18 +85,14 @@ public class OwnerRegisterListener extends AbstractServiceApiPlusListener {
         Assert.hasKeyAndValue(reqJson, "communityName", "未包含小区名称");
         Assert.hasKeyAndValue(reqJson, "areaCode", "未包含小区地区");
         Assert.hasKeyAndValue(reqJson, "appUserName", "未包含用户名称");
-        //Assert.hasKeyAndValue(reqJson, "idCard", "未包含身份证号");
+        Assert.hasKeyAndValue(reqJson, "idCard", "未包含身份证号");
         Assert.hasKeyAndValue(reqJson, "link", "未包含联系电话");
-        Assert.hasKeyAndValue(reqJson, "msgCode", "未包含联系电话验证码");
+        Assert.hasKeyAndValue(reqJson, "sessionKey", "未包含微信回话");
         Assert.hasKeyAndValue(reqJson, "password", "未包含密码");
+        String photo = CommonCache.getValue(reqJson.getString("sessionKey"));
 
-        SmsDto smsDto = new SmsDto();
-        smsDto.setTel(reqJson.getString("link"));
-        smsDto.setCode(reqJson.getString("msgCode"));
-        smsDto = smsInnerServiceSMOImpl.validateCode(smsDto);
-
-        if (!smsDto.isSuccess() && "ON".equals(MappingCache.getValue(SendSmsFactory.SMS_SEND_SWITCH))) {
-            throw new IllegalArgumentException(smsDto.getMsg());
+        if (!reqJson.getString("link").equals(photo)) {
+            throw new IllegalArgumentException("该手机号不是微信返回手机号");
         }
     }
 
@@ -131,9 +125,8 @@ public class OwnerRegisterListener extends AbstractServiceApiPlusListener {
 
             OwnerDto ownerDto = new OwnerDto();
             ownerDto.setCommunityId(tmpCommunityDto.getCommunityId());
-            //ownerDto.setIdCard(reqJson.getString("idCard"));
+            ownerDto.setIdCard(reqJson.getString("idCard"));
             ownerDto.setName(reqJson.getString("appUserName"));
-            ownerDto.setLink(reqJson.getString("link"));
             List<OwnerDto> ownerDtos = ownerInnerServiceSMOImpl.queryOwnerMembers(ownerDto);
 
             Assert.listOnlyOne(ownerDtos, "填写业主信息错误");
@@ -145,13 +138,8 @@ public class OwnerRegisterListener extends AbstractServiceApiPlusListener {
             String paramIn = dataFlowContext.getReqData();
             JSONObject paramObj = JSONObject.parseObject(paramIn);
             String appId = context.getAppId();
-            if ("992020061452450002".equals(appId)) { //公众号
-                paramObj.put("appType", OwnerAppUserDto.APP_TYPE_WECHAT);
-            } else if ("992019111758490006".equals(appId)) { //小程序
-                paramObj.put("appType", OwnerAppUserDto.APP_TYPE_WECHAT_MINA);
-            } else {//app
-                paramObj.put("appType", OwnerAppUserDto.APP_TYPE_APP);
-            }
+
+            paramObj.put("appType", OwnerAppUserDto.APP_TYPE_APP);
             paramObj.put("userId", GenerateCodeFactory.getUserId());
             if (reqJson.containsKey("openId")) {
                 paramObj.put("openId", reqJson.getString("openId"));
@@ -163,10 +151,14 @@ public class OwnerRegisterListener extends AbstractServiceApiPlusListener {
             paramObj.put("name", paramObj.getString("appUserName"));
             paramObj.put("tel", paramObj.getString("link"));
             userBMOImpl.registerUser(paramObj, dataFlowContext);
+            JSONObject ownerObj = new JSONObject();
+            ownerObj.put("memberId",tmpOwnerDto.getMemberId());
+            ownerObj.put("wxPhoto",reqJson.getString("link"));
+            ownerBMOImpl.editOwner(ownerObj,dataFlowContext);
 
-        }catch (Exception e){
+        } catch (Exception e) {
             context.setServiceBusiness(null);
-            context.setResponseEntity(ResultVo.createResponseEntity(ResultVo.CODE_UNAUTHORIZED,e.getMessage()));
+            context.setResponseEntity(ResultVo.createResponseEntity(ResultVo.CODE_UNAUTHORIZED, e.getMessage()));
         }
     }
 

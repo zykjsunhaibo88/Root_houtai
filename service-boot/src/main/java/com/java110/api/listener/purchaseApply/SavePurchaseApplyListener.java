@@ -1,7 +1,7 @@
 package com.java110.api.listener.purchaseApply;
 
 import com.alibaba.fastjson.JSONObject;
-import com.java110.api.bmo.purchaseApply.IPurchaseApplyApiBMO;
+import com.java110.api.bmo.purchaseApply.IPurchaseApplyBMO;
 import com.java110.api.listener.AbstractServiceApiPlusListener;
 import com.java110.core.annotation.Java110Listener;
 import com.java110.core.context.DataFlowContext;
@@ -26,7 +26,7 @@ import org.springframework.http.ResponseEntity;
 public class SavePurchaseApplyListener extends AbstractServiceApiPlusListener {
 
     @Autowired
-    private IPurchaseApplyApiBMO purchaseApplyBMOImpl;
+    private IPurchaseApplyBMO purchaseApplyBMOImpl;
     @Autowired
     private IPurchaseApplyUserInnerServiceSMO iPurchaseApplyUserInnerServiceSMO;
 

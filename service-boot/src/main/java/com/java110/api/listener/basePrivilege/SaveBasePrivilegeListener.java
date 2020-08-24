@@ -2,20 +2,22 @@ package com.java110.api.listener.basePrivilege;
 
 import com.alibaba.fastjson.JSONObject;
 import com.java110.api.listener.AbstractServiceApiListener;
-import com.java110.core.annotation.Java110Listener;
-import com.java110.core.context.DataFlowContext;
-import com.java110.core.event.service.api.ServiceDataFlowEvent;
-import com.java110.core.factory.GenerateCodeFactory;
-import com.java110.dto.basePrivilege.BasePrivilegeDto;
-import com.java110.intf.community.IMenuInnerServiceSMO;
-import com.java110.utils.constant.ServiceCodeBasePrivilegeConstant;
 import com.java110.utils.util.Assert;
 import com.java110.utils.util.BeanConvertUtil;
-import com.java110.utils.util.StringUtil;
+import com.java110.core.context.DataFlowContext;
+import com.java110.core.factory.GenerateCodeFactory;
+import com.java110.intf.community.IMenuInnerServiceSMO;
+import com.java110.dto.basePrivilege.BasePrivilegeDto;
+import com.java110.core.event.service.api.ServiceDataFlowEvent;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import com.java110.utils.constant.ServiceCodeBasePrivilegeConstant;
+
+
+import com.java110.core.annotation.Java110Listener;
 
 /**
  * 保存小区侦听
@@ -34,6 +36,7 @@ public class SaveBasePrivilegeListener extends AbstractServiceApiListener {
         Assert.hasKeyAndValue(reqJson, "name", "必填，请填写权限名称");
         Assert.hasKeyAndValue(reqJson, "domain", "必填，请选择商户类型");
         Assert.hasKeyAndValue(reqJson, "resource", "必填，请选择资源路径");
+        Assert.hasKeyAndValue(reqJson, "mId", "必填，菜单为空");
 
     }
 
@@ -56,13 +59,12 @@ public class SaveBasePrivilegeListener extends AbstractServiceApiListener {
 
     /**
      * 刷新 菜单组ID
-     *
      * @param basePrivilegeDto
      */
     private void freshPId(BasePrivilegeDto basePrivilegeDto) {
 
-        if (!StringUtil.isEmpty(basePrivilegeDto.getPId())) {
-            return;
+        if(!StringUtils.isEmpty(basePrivilegeDto.getPId())){
+            return ;
         }
         //生成流水
         basePrivilegeDto.setPId(GenerateCodeFactory.getGeneratorId(GenerateCodeFactory.BASE_PRIVILEGE));
@@ -82,6 +84,8 @@ public class SaveBasePrivilegeListener extends AbstractServiceApiListener {
     public int getOrder() {
         return DEFAULT_ORDER;
     }
+
+
 
 
     public IMenuInnerServiceSMO getMenuInnerServiceSMOImpl() {
