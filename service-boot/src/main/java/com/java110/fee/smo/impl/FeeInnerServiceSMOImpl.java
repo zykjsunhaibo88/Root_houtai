@@ -1,22 +1,29 @@
 package com.java110.fee.smo.impl;
 
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.java110.core.base.smo.BaseServiceSMO;
 import com.java110.dto.PageDto;
-import com.java110.dto.fee.BillDto;
-import com.java110.dto.fee.BillOweFeeDto;
-import com.java110.dto.fee.FeeDto;
+import com.java110.dto.fee.*;
 import com.java110.dto.user.UserDto;
 import com.java110.fee.dao.IFeeServiceDao;
+import com.java110.intf.fee.IFeeConfigInnerServiceSMO;
 import com.java110.intf.fee.IFeeInnerServiceSMO;
 import com.java110.intf.user.IUserInnerServiceSMO;
+import com.java110.po.fee.PayFeePo;
 import com.java110.utils.util.BeanConvertUtil;
+import com.java110.utils.util.DateUtil;
+import com.java110.utils.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @ClassName FloorInnerServiceSMOImpl
@@ -33,10 +40,14 @@ public class FeeInnerServiceSMOImpl extends BaseServiceSMO implements IFeeInnerS
     private IFeeServiceDao feeServiceDaoImpl;
 
     @Autowired
+    private IFeeConfigInnerServiceSMO feeConfigInnerServiceSMOImpl;
+
+    @Autowired
     private IUserInnerServiceSMO userInnerServiceSMOImpl;
 
+
     @Override
-    public List<FeeDto> queryFees(@RequestBody FeeDto feeDto) {
+    public List<FeeDto> queryFees( FeeDto feeDto) {
 
         //校验是否传了 分页信息
 
@@ -62,6 +73,15 @@ public class FeeInnerServiceSMOImpl extends BaseServiceSMO implements IFeeInnerS
         return fees;
     }
 
+    @Override
+    public List<FeeDto> queryBusinessFees( FeeDto feeDto) {
+
+        List<Map> fees = feeServiceDaoImpl.getBusinessFeeInfo(BeanConvertUtil.beanCovertMap(feeDto));
+
+        return BeanConvertUtil.covertBeanList(fees, FeeDto.class);
+
+    }
+
     /**
      * 从用户列表中查询用户，将用户中的信息 刷新到 floor对象中
      *
@@ -74,6 +94,12 @@ public class FeeInnerServiceSMOImpl extends BaseServiceSMO implements IFeeInnerS
                 BeanConvertUtil.covertBean(user, fee);
             }
         }
+
+        if (!StringUtil.isEmpty(fee.getImportFeeName())) {
+            //fee.setFeeName(fee.getImportFeeName() + "(" + fee.getFeeName() + ")");
+            fee.setFeeName(fee.getImportFeeName());
+        }
+
     }
 
     /**
@@ -86,19 +112,40 @@ public class FeeInnerServiceSMOImpl extends BaseServiceSMO implements IFeeInnerS
         List<String> userIds = new ArrayList<String>();
         for (FeeDto fee : fees) {
             userIds.add(fee.getUserId());
+
         }
 
         return userIds.toArray(new String[userIds.size()]);
     }
 
     @Override
-    public int queryFeesCount(@RequestBody FeeDto feeDto) {
+    public int queryFeesCount( FeeDto feeDto) {
         return feeServiceDaoImpl.queryFeesCount(BeanConvertUtil.beanCovertMap(feeDto));
+    }
+
+    @Override
+    public List<FeeDto> queryFeeByAttr(FeeAttrDto feeAttrDto) {
+        //校验是否传了 分页信息
+
+        int page = feeAttrDto.getPage();
+
+        if (page != PageDto.DEFAULT_PAGE) {
+            feeAttrDto.setPage((page - 1) * feeAttrDto.getRow());
+        }
+
+        List<FeeDto> fees = BeanConvertUtil.covertBeanList(feeServiceDaoImpl.queryFeeByAttr(BeanConvertUtil.beanCovertMap(feeAttrDto)), FeeDto.class);
+
+        return fees;
+    }
+
+    @Override
+    public int queryFeeByAttrCount(FeeAttrDto feeAttrDto) {
+        return feeServiceDaoImpl.queryFeeByAttrCount(BeanConvertUtil.beanCovertMap(feeAttrDto));
     }
 
 
     @Override
-    public int queryBillCount(@RequestBody BillDto billDto) {
+    public int queryBillCount( BillDto billDto) {
         return feeServiceDaoImpl.queryBillCount(BeanConvertUtil.beanCovertMap(billDto));
     }
 
@@ -109,7 +156,7 @@ public class FeeInnerServiceSMOImpl extends BaseServiceSMO implements IFeeInnerS
      * @return
      */
     @Override
-    public List<BillDto> queryBills(@RequestBody BillDto billDto) {
+    public List<BillDto> queryBills( BillDto billDto) {
 
         //校验是否传了 分页信息
 
@@ -125,9 +172,47 @@ public class FeeInnerServiceSMOImpl extends BaseServiceSMO implements IFeeInnerS
 
     }
 
+    @Override
+    public int computeBillOweFeeCount( FeeDto feeDto) {
+        return feeServiceDaoImpl.computeBillOweFeeCount(BeanConvertUtil.beanCovertMap(feeDto));
+    }
+
+
 
     @Override
-    public int queryBillOweFeeCount(@RequestBody BillOweFeeDto billDto) {
+    public List<FeeDto> computeBillOweFee( FeeDto feeDto) {
+        int page = feeDto.getPage();
+
+        if (page != PageDto.DEFAULT_PAGE) {
+            feeDto.setPage((page - 1) * feeDto.getRow());
+        }
+
+        List<FeeDto> fees = BeanConvertUtil.covertBeanList(feeServiceDaoImpl.computeBillOweFee(BeanConvertUtil.beanCovertMap(feeDto)), FeeDto.class);
+
+        return fees;
+    }
+
+    @Override
+    public List<FeeDto> computeEveryOweFee(FeeDto feeDto) {
+        int page = feeDto.getPage();
+
+        if (page != PageDto.DEFAULT_PAGE) {
+            feeDto.setPage((page - 1) * feeDto.getRow());
+        }
+
+        List<FeeDto> fees = BeanConvertUtil.covertBeanList(feeServiceDaoImpl.computeEveryOweFee(BeanConvertUtil.beanCovertMap(feeDto)), FeeDto.class);
+
+        return fees;
+    }
+
+    @Override
+    public int computeEveryOweFeeCount(FeeDto feeDto) {
+        return feeServiceDaoImpl.computeEveryOweFeeCount(BeanConvertUtil.beanCovertMap(feeDto));
+    }
+
+
+    @Override
+    public int queryBillOweFeeCount( BillOweFeeDto billDto) {
         return feeServiceDaoImpl.queryBillOweFeeCount(BeanConvertUtil.beanCovertMap(billDto));
     }
 
@@ -138,7 +223,7 @@ public class FeeInnerServiceSMOImpl extends BaseServiceSMO implements IFeeInnerS
      * @return
      */
     @Override
-    public List<BillOweFeeDto> queryBillOweFees(@RequestBody BillOweFeeDto billDto) {
+    public List<BillOweFeeDto> queryBillOweFees( BillOweFeeDto billDto) {
 
         //校验是否传了 分页信息
 
@@ -161,8 +246,13 @@ public class FeeInnerServiceSMOImpl extends BaseServiceSMO implements IFeeInnerS
      * @return
      */
     @Override
-    public int insertBillOweFees(@RequestBody BillOweFeeDto billDto) {
+    public int insertBillOweFees( BillOweFeeDto billDto) {
         return feeServiceDaoImpl.insertBillOweFees(BeanConvertUtil.beanCovertMap(billDto));
+    }
+
+    @Override
+    public int updateBillOweFees( BillOweFeeDto billDto) {
+        return feeServiceDaoImpl.updateBillOweFees(BeanConvertUtil.beanCovertMap(billDto));
     }
 
     /**
@@ -172,8 +262,98 @@ public class FeeInnerServiceSMOImpl extends BaseServiceSMO implements IFeeInnerS
      * @return
      */
     @Override
-    public int insertBill(@RequestBody BillDto billDto) {
+    public int insertBill( BillDto billDto) {
         return feeServiceDaoImpl.insertBill(BeanConvertUtil.beanCovertMap(billDto));
+    }
+
+    @Override
+    public int updateFee( PayFeePo payFeePo) {
+        feeServiceDaoImpl.updateFeeInfoInstance(BeanConvertUtil.beanCovertMap(payFeePo));
+        return 1;
+    }
+
+    @Override
+    public int saveFee( List<PayFeePo> payFeePos) {
+        List<Map> fees = new ArrayList<>();
+        for (PayFeePo payFeePo : payFeePos) {
+            fees.add(BeanConvertUtil.beanCovertMap(payFeePo));
+        }
+
+        Map info = new HashMap();
+        info.put("payFeePos", fees);
+        return feeServiceDaoImpl.insertFees(info);
+    }
+
+    @Override
+    public JSONArray getAssetsFee( String communityId) {
+
+        JSONArray data = new JSONArray();
+        FeeConfigDto feeConfigDto = new FeeConfigDto();
+        feeConfigDto.setCommunityId(communityId);
+        feeConfigDto.setCurTime(DateUtil.getNow(DateUtil.DATE_FORMATE_STRING_A));
+        List<FeeConfigDto> feeConfigDtos = feeConfigInnerServiceSMOImpl.queryFeeConfigs(feeConfigDto);
+
+        if (feeConfigDtos == null || feeConfigDtos.size() < 1) {
+            return data;
+        }
+
+
+        for (FeeConfigDto tmpFeeConfigDto : feeConfigDtos) {
+            dealFeeConfig(data, tmpFeeConfigDto);
+        }
+
+
+        return data;
+    }
+
+    private void dealFeeConfig(JSONArray data, FeeConfigDto tmpFeeConfigDto) {
+        String billType = tmpFeeConfigDto.getBillType();
+        JSONObject config = new JSONObject();
+        if (FeeConfigDto.BILL_TYPE_EVERY.equals(billType)) {
+            Map info = new HashMap();
+            info.put("configId", tmpFeeConfigDto.getConfigId());
+            info.put("communityId", tmpFeeConfigDto.getCommunityId());
+            info.put("arrearsEndTime", DateUtil.getNow(DateUtil.DATE_FORMATE_STRING_A));
+            info.put("state", FeeDto.STATE_DOING);
+            int oweFeeCount = feeServiceDaoImpl.queryFeesCount(info);
+            config.put("oweFeeCount", oweFeeCount);
+
+            info.put("noArrearsEndTime", DateUtil.getNow(DateUtil.DATE_FORMATE_STRING_A));
+            info.put("state", FeeDto.STATE_DOING);
+            int feeCount = feeServiceDaoImpl.queryFeesCount(info);
+            config.put("feeCount", feeCount);
+
+            config.put("feeName", tmpFeeConfigDto.getFeeName());
+            data.add(config);
+            return;
+        }
+        BillDto billDto = new BillDto();
+        billDto.setConfigId(tmpFeeConfigDto.getConfigId());
+        billDto.setCommunityId(tmpFeeConfigDto.getCommunityId());
+        billDto.setCurBill("T");
+        List<Map> bills = feeServiceDaoImpl.queryBills(BeanConvertUtil.beanCovertMap(billDto));
+        if (bills == null || bills.size() < 1) {
+            config.put("oweFeeCount", 0);
+            config.put("feeCount", 0);
+            config.put("feeName", tmpFeeConfigDto.getFeeName());
+            return;
+        }
+
+        Map tmpBillDto = bills.get(0);
+        Map info = new HashMap();
+        info.put("billId", tmpBillDto.get("billId"));
+        info.put("communityId", tmpFeeConfigDto.getCommunityId());
+        int oweFeeCount = feeServiceDaoImpl.queryBillOweFeeCount(info);
+
+        config.put("oweFeeCount", oweFeeCount);
+        info.put("configId", tmpFeeConfigDto.getConfigId());
+        info.put("communityId", tmpFeeConfigDto.getCommunityId());
+        info.put("state", FeeDto.STATE_DOING);
+        int feeTotalCount = feeServiceDaoImpl.queryFeesCount(info);
+        config.put("feeCount", feeTotalCount - oweFeeCount);
+
+        config.put("feeName", tmpFeeConfigDto.getFeeName());
+        data.add(config);
     }
 
 

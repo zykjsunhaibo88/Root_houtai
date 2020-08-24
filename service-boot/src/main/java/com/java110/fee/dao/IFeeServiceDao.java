@@ -1,6 +1,7 @@
 package com.java110.fee.dao;
 
 
+import com.java110.po.fee.PayFeePo;
 import com.java110.utils.exception.DAOException;
 
 
@@ -73,6 +74,26 @@ public interface IFeeServiceDao {
      */
     int queryFeesCount(Map info);
 
+
+    /**
+     * 查询费用总数
+     *
+     * @param info 费用信息
+     * @return 费用数量
+     */
+    int queryFeeByAttrCount(Map info);
+
+
+    /**
+     * 查询费用信息（instance过程）
+     * 根据bId 查询费用信息
+     *
+     * @param info bId 信息
+     * @return 费用信息
+     * @throws DAOException DAO异常
+     */
+    List<Map> queryFeeByAttr(Map info) throws DAOException;
+
     /**
      * 查询费用账期
      *
@@ -116,6 +137,16 @@ public interface IFeeServiceDao {
      */
     int insertBillOweFees(Map info) throws DAOException;
 
+
+    /**
+     * 修改账单欠费
+     *
+     * @param info bId 信息
+     * @return List<Map>
+     * @throws DAOException DAO异常
+     */
+    int updateBillOweFees(Map info) throws DAOException;
+
     /**
      *  保存账单
      *
@@ -125,7 +156,19 @@ public interface IFeeServiceDao {
      */
     int insertBill(Map info) throws DAOException;
 
+    /**
+     * 保存费用
+     * @param info
+     * @return
+     */
+    int insertFees(Map info);
 
 
+    int computeBillOweFeeCount(Map beanCovertMap);
 
+    List<Map> computeBillOweFee(Map beanCovertMap);
+
+    int computeEveryOweFeeCount(Map beanCovertMap);
+
+    List<Map> computeEveryOweFee(Map beanCovertMap);
 }

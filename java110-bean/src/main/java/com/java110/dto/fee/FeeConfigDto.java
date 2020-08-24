@@ -34,6 +34,7 @@ public class FeeConfigDto extends PageDto implements Serializable {
     private String feeName;
     private String startTime;
     private String endTime;
+    private String curTime;
     private String communityId;
     private String feeTypeCdName;
     private String feeFlagName;
@@ -45,6 +46,8 @@ public class FeeConfigDto extends PageDto implements Serializable {
     private String paymentCd;
 
     private String paymentCycle;
+
+    private String valid;
 
 
     private Date createTime;
@@ -204,5 +207,21 @@ public class FeeConfigDto extends PageDto implements Serializable {
 
     public void setPaymentCycle(String paymentCycle) {
         this.paymentCycle = paymentCycle;
+    }
+
+    public String getCurTime() {
+        return curTime;
+    }
+
+    public void setCurTime(String curTime) {
+        this.curTime = curTime;
+    }
+
+    public String getValid() {
+        return valid;
+    }
+
+    public void setValid(String valid) {
+        this.valid = valid;
     }
 }

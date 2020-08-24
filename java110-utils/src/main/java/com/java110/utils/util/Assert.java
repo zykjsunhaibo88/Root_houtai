@@ -16,6 +16,13 @@ import java.util.regex.Pattern;
  */
 public class Assert extends org.springframework.util.Assert {
 
+
+    public static void hasValue(Object value,String msg){
+        Assert.notNull(value, msg);
+        Assert.hasLength(value.toString(), msg);
+
+    }
+
     /**
      * 判断 jsonObject 是否为空
      *
@@ -337,6 +344,45 @@ public class Assert extends org.springframework.util.Assert {
         hasKeyAndValue(info, key, message);
         if (!ValidatorUtil.isEmail(info.getString(key))) {
             throw new IllegalArgumentException(message);
+        }
+    }
+
+    public static void judgeAttrValue(JSONObject paramObj){
+        if (!paramObj.containsKey("attrs")) {
+            return;
+        }
+
+        JSONArray attrs = paramObj.getJSONArray("attrs");
+        if (attrs.size() < 1) {
+            return;
+        }
+        JSONObject attr = null;
+        for (int attrIndex = 0; attrIndex < attrs.size(); attrIndex++) {
+            attr = attrs.getJSONObject(attrIndex);
+            if (!"Y".equals(attr.getString("required"))) {
+                continue;
+            }
+            Assert.hasKeyAndValue(attr, "value", attr.getString("specName") + "不能为空");
+
+            //整数
+            if ("2002".equals(attr.getString("specValueType"))) {
+                Assert.isInteger(attr.getString("value"), attr.getString("specName") + "不是整数");
+            }
+
+            //整数
+            if ("3003".equals(attr.getString("specValueType"))) {
+                Assert.isMoney(attr.getString("value"), attr.getString("specName") + "不是金额类型 如 3.00");
+            }
+
+            // 日期4004
+            if ("4004".equals(attr.getString("specValueType"))) {
+                Assert.isDate(attr.getString("value"), DateUtil.DATE_FORMATE_STRING_B, attr.getString("specName") + "不是日期格式 YYYY-MM-DD");
+            }
+
+            // 日期5005
+            if ("5005".equals(attr.getString("specValueType"))) {
+                Assert.isDate(attr.getString("value"), DateUtil.DATE_FORMATE_STRING_A, attr.getString("specName") + "不是日期格式 YYYY-MM-DD hh:mm:ss");
+            }
         }
     }
 

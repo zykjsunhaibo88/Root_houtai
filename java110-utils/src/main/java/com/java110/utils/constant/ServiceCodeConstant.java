@@ -470,6 +470,9 @@ public class ServiceCodeConstant {
 
     // App 用户绑定业主接口
     public static final String SERVICE_CODE_APP_USER_BINDING_OWNER = "owner.appUserBindingOwner";
+
+    // App 业主注册接口
+    public static final String SERVICE_CODE_OWNER_REGISTER_WX_PHOTO = "owner.ownerRegisterWxPhoto";
     // App 业主注册接口
     public static final String SERVICE_CODE_OWNER_REGISTER = "owner.ownerRegister";
 
@@ -521,6 +524,9 @@ public class ServiceCodeConstant {
 
     //查询首页统计信息
     public static final String SERVICE_CODE_QUERY_INDEX_STATISTIC = "index.queryIndexStatistic";
+
+    //查询首页待办
+    public static final String SERVICE_CODE_QUERY_INDEX_TODO_TASK = "index.queryIndexTodoTask";
 
     //查询费用配置 根据停车位
     public static final String SERVICE_CODE_QUERY_FEE_BY_PARKING_SPACE = "fee.queryFeeByParkingSpace";

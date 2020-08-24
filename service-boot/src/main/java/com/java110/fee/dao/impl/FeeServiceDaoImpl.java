@@ -130,6 +130,27 @@ public class FeeServiceDaoImpl extends BaseServiceDao implements IFeeServiceDao 
         return Integer.parseInt(businessFeeInfos.get(0).get("count").toString());
     }
 
+    @Override
+    public int queryFeeByAttrCount(Map info) {
+        logger.debug("查询费用数据 入参 info : {}", info);
+
+        List<Map> businessFeeInfos = sqlSessionTemplate.selectList("feeServiceDaoImpl.queryFeeByAttrCount", info);
+        if (businessFeeInfos.size() < 1) {
+            return 0;
+        }
+
+        return Integer.parseInt(businessFeeInfos.get(0).get("count").toString());
+    }
+
+    @Override
+    public List<Map> queryFeeByAttr(Map info) throws DAOException {
+        logger.debug("查询费用信息 入参 info : {}", info);
+
+        List<Map> businessFeeInfos = sqlSessionTemplate.selectList("feeServiceDaoImpl.queryFeeByAttr", info);
+
+        return businessFeeInfos;
+    }
+
     /**
      * 查询费用账期
      *
@@ -226,6 +247,22 @@ public class FeeServiceDaoImpl extends BaseServiceDao implements IFeeServiceDao 
      * @throws DAOException DAO异常
      */
     @Override
+    public int updateBillOweFees(Map info) throws DAOException {
+        logger.debug("保存欠费费用信息 入参 info : {}", info);
+
+        int saveFlag = sqlSessionTemplate.insert("feeServiceDaoImpl.updateBillOweFees", info);
+
+        return saveFlag;
+    }
+
+    /**
+     * 保存欠费
+     *
+     * @param info bId 信息
+     * @return List<Map>
+     * @throws DAOException DAO异常
+     */
+    @Override
     public int insertBill(Map info) throws DAOException {
         logger.debug("保存欠费费用信息 入参 info : {}", info);
 
@@ -234,6 +271,52 @@ public class FeeServiceDaoImpl extends BaseServiceDao implements IFeeServiceDao 
         int saveFlag = sqlSessionTemplate.insert("feeServiceDaoImpl.insertBill", info);
 
         return saveFlag;
+    }
+
+    /**
+     * 批量保存费用
+     *
+     * @param info
+     * @return
+     */
+    @Override
+    public int insertFees(Map info) {
+
+        int saveFlag = sqlSessionTemplate.insert("feeServiceDaoImpl.insertFees", info);
+
+        return saveFlag;
+    }
+
+    @Override
+    public int computeBillOweFeeCount(Map beanCovertMap) {
+        List<Map> businessFeeInfos = sqlSessionTemplate.selectList("feeServiceDaoImpl.computeBillOweFeeCount", beanCovertMap);
+        if (businessFeeInfos.size() < 1) {
+            return 0;
+        }
+        return Integer.parseInt(businessFeeInfos.get(0).get("count").toString());
+    }
+
+    @Override
+    public List<Map> computeBillOweFee(Map beanCovertMap) {
+        List<Map> businessFeeInfos = sqlSessionTemplate.selectList("feeServiceDaoImpl.computeBillOweFee", beanCovertMap);
+
+        return businessFeeInfos;
+    }
+
+    @Override
+    public int computeEveryOweFeeCount(Map beanCovertMap) {
+        List<Map> businessFeeInfos = sqlSessionTemplate.selectList("feeServiceDaoImpl.computeEveryOweFeeCount", beanCovertMap);
+        if (businessFeeInfos.size() < 1) {
+            return 0;
+        }
+        return Integer.parseInt(businessFeeInfos.get(0).get("count").toString());
+    }
+
+    @Override
+    public List<Map> computeEveryOweFee(Map beanCovertMap) {
+        List<Map> businessFeeInfos = sqlSessionTemplate.selectList("feeServiceDaoImpl.computeEveryOweFee", beanCovertMap);
+
+        return businessFeeInfos;
     }
 
 

@@ -1,23 +1,27 @@
+package com.java110.dto.owner;
 
-package com.java110.dto;
+import com.java110.dto.PageDto;
 
 import java.io.Serializable;
 import java.util.Date;
 
 /**
  * @ClassName FloorDto
- * @Description 小区房屋属性数据层封装
+ * @Description 业主属性数据层封装
  * @Author wuxw
  * @Date 2019/4/24 8:52
  * @Version 1.0
  * add by wuxw 2019/4/24
  **/
-public class RoomAttrDto extends PageDto implements Serializable {
+public class OwnerAttrDto extends PageDto implements Serializable {
 
     private String attrId;
     private String specCd;
+    private String communityId;
     private String value;
-    private String roomId;
+    private String memberId;
+    private String[] memberIds;
+
     private String valueName;
     private String specName;
     private String listShow;
@@ -44,6 +48,14 @@ public class RoomAttrDto extends PageDto implements Serializable {
         this.specCd = specCd;
     }
 
+    public String getCommunityId() {
+        return communityId;
+    }
+
+    public void setCommunityId(String communityId) {
+        this.communityId = communityId;
+    }
+
     public String getValue() {
         return value;
     }
@@ -52,12 +64,12 @@ public class RoomAttrDto extends PageDto implements Serializable {
         this.value = value;
     }
 
-    public String getRoomId() {
-        return roomId;
+    public String getMemberId() {
+        return memberId;
     }
 
-    public void setRoomId(String roomId) {
-        this.roomId = roomId;
+    public void setMemberId(String memberId) {
+        this.memberId = memberId;
     }
 
 
@@ -75,6 +87,14 @@ public class RoomAttrDto extends PageDto implements Serializable {
 
     public void setStatusCd(String statusCd) {
         this.statusCd = statusCd;
+    }
+
+    public String[] getMemberIds() {
+        return memberIds;
+    }
+
+    public void setMemberIds(String[] memberIds) {
+        this.memberIds = memberIds;
     }
 
     public String getValueName() {

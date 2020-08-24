@@ -5,7 +5,6 @@ package com.java110.utils.constant;
  */
 public class ServiceConstant {
 
-
     /**
      * API中心服务
      */
