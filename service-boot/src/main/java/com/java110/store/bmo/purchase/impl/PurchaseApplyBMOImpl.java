@@ -13,7 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 
-@Service("purchaseApplyBMOImpl")
+//@Service("purchaseApplyBMOImpl")
 public class PurchaseApplyBMOImpl implements IPurchaseApplyBMO {
 
     //@Autowired
