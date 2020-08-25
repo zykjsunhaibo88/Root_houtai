@@ -85,10 +85,15 @@
         <appender-ref ref="STDOUT_FILE"/>
     </logger>
 
+    <logger name="com.java110.api" level="DEBUG">
+        <appender-ref ref="DEBUG_FILE"/>
+    </logger>
 
     <logger name="com.java110" level="DEBUG">
         <appender-ref ref="STDOUT_FILE"/>
     </logger>
+
+
 
     <logger name="io.shardingsphere" level="DEBUG">
         <appender-ref ref="STDOUT_FILE"/>
