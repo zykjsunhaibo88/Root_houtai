@@ -8,13 +8,13 @@ public class ServiceConstant {
     /**
      * API中心服务
      */
-    public static final  String SERVICE_API_URL = "http://192.168.200.201:8012";
-    public static final  String SERVICE_SERVICE_URL = "http://192.168.200.201:8012";
+    public static final  String SERVICE_API_URL = "http://dev.java110.com:8012";
+    public static final  String SERVICE_SERVICE_URL = "http://dev.java110.com:8012";
 
     /**
      * API中心服务
      */
-    public static final  String SERVICE_ORDER_URL = "http://192.168.200.201:8012";
+    public static final  String SERVICE_ORDER_URL = "http://dev.java110.com:8012";
 
     //public  static final String SERVICE_API_URL = "http://api.java110.com:8008";
 }
