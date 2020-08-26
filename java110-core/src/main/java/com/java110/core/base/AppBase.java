@@ -2,7 +2,7 @@ package com.java110.core.base;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.java110.core.client.RestTemplate;
+
 import com.java110.core.context.IPageData;
 import com.java110.utils.cache.BaseCache;
 import com.java110.utils.constant.CommonConstant;
@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.*;
 import org.springframework.web.client.HttpStatusCodeException;
+import org.springframework.web.client.RestTemplate;
 
 
 import java.util.List;
@@ -133,6 +134,7 @@ public class AppBase extends BaseCache {
         header.add(CommonConstant.HTTP_SIGN.toLowerCase(), "");
         HttpEntity<String> httpEntity = new HttpEntity<String>(param, header);
         //logger.debug("请求中心服务信息，{}", httpEntity);
+        logger.debug("请求Api地址为,{} 请求中心服务信息，{}", url, httpEntity);
         try {
             responseEntity = restTemplate.exchange(url, httpMethod, httpEntity, String.class);
         } catch (HttpStatusCodeException e) { //这里spring 框架 在4XX 或 5XX 时抛出 HttpServerErrorException 异常，需要重新封装一下
