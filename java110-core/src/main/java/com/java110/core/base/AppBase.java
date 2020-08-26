@@ -2,6 +2,7 @@ package com.java110.core.base;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.java110.core.client.RestTemplate;
 import com.java110.core.context.IPageData;
 import com.java110.utils.cache.BaseCache;
 import com.java110.utils.constant.CommonConstant;
@@ -11,7 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.*;
 import org.springframework.web.client.HttpStatusCodeException;
-import org.springframework.web.client.RestTemplate;
+
 
 import java.util.List;
 import java.util.Map;
