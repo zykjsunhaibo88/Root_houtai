@@ -25,6 +25,36 @@
         </layout>
     </appender>
 
+    <appender name="DEBUG_FRONT_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>./logs/front.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>./logs/debug-%d{yyyyMMdd}.log.%i</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>500MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>2</maxHistory>
+        </rollingPolicy>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} -%msg%n
+            </Pattern>
+        </layout>
+    </appender>
+
+    <appender name="DEBUG_API_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>./logs/front.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>./logs/debug-%d{yyyyMMdd}.log.%i</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>500MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>2</maxHistory>
+        </rollingPolicy>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} -%msg%n
+            </Pattern>
+        </layout>
+    </appender>
+
     <appender name="INFO_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <File>./logs/info.log</File>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
@@ -63,8 +93,12 @@
     <logger name="org.springframework" level="ERROR">
         <appender-ref ref="STDOUT_FILE"/>
     </logger>
+
+    <logger name="com.java110.front" level="DEBUG">
+        <appender-ref ref="DEBUG_FRONT_FILE"/>
+    </logger>
     <logger name="com.java110.api" level="DEBUG">
-        <appender-ref ref="STDOUT_FILE"/>
+        <appender-ref ref="DEBUG_API_FILE"/>
     </logger>
     <logger name="com.java110.order" level="DEBUG">
         <appender-ref ref="STDOUT_FILE"/>
@@ -83,6 +117,10 @@
     </logger>
     <logger name="druid.sql.ResultSet" level="DEBUG">
         <appender-ref ref="STDOUT_FILE"/>
+    </logger>
+
+    <logger name="com.java110.api" level="DEBUG">
+        <appender-ref ref="DEBUG_FILE"/>
     </logger>
 
     <logger name="com.java110.api" level="DEBUG">
