@@ -46,8 +46,14 @@ public class RestTemplate extends org.springframework.web.client.RestTemplate {
 
         url = replaceUrl(url);
         logger.debug("请求信息：url:{},method:{},request:{},uriVariables:{}", url, method, requestEntity, uriVariables);
-        ResponseEntity<T> responseEntity = super.exchange(url, method, requestEntity, responseType, uriVariables);
-        logger.debug("返回信息：responseEntity:{}", responseEntity);
+        ResponseEntity<T> responseEntity = null;
+        try {
+            responseEntity = super.exchange(url, method, requestEntity, responseType, uriVariables);
+
+            logger.debug("返回信息：responseEntity:{}", responseEntity);
+        } catch (Exception e) {
+            logger.error("调用接口失败", e);
+        }
 
         return responseEntity;
     }
