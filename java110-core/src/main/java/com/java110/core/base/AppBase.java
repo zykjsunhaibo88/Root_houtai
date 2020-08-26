@@ -10,6 +10,7 @@ import com.java110.utils.log.LoggerEngine;
 import com.java110.utils.util.StringUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
@@ -26,6 +27,9 @@ public class AppBase extends BaseCache {
 
 
     private final static String SERVICE_CASE_JSON_EXCEPTION = "101";//转json异常
+
+    @Autowired
+    private com.java110.core.client.RestTemplate restTemplateApi;
 
     /**
      * 请求报文校验，返回去json
@@ -136,7 +140,7 @@ public class AppBase extends BaseCache {
         //logger.debug("请求中心服务信息，{}", httpEntity);
         logger.debug("请求Api地址为,{} 请求中心服务信息，{}", url, httpEntity);
         try {
-            responseEntity = restTemplate.exchange(url, httpMethod, httpEntity, String.class);
+            responseEntity = restTemplateApi.exchange(url, httpMethod, httpEntity, String.class);
         } catch (HttpStatusCodeException e) { //这里spring 框架 在4XX 或 5XX 时抛出 HttpServerErrorException 异常，需要重新封装一下
             responseEntity = new ResponseEntity<String>( e.getResponseBodyAsString(), e.getStatusCode());
         } catch (Exception e) {
