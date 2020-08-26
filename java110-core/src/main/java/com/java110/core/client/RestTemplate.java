@@ -1,6 +1,7 @@
 package com.java110.core.client;
 
 import com.java110.utils.constant.ServiceConstant;
+import com.java110.utils.util.DateUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
@@ -45,8 +46,10 @@ public class RestTemplate extends org.springframework.web.client.RestTemplate {
                                           HttpEntity<?> requestEntity, Class<T> responseType, Object... uriVariables) throws RestClientException {
 
         url = replaceUrl(url);
-        logger.debug("请求信息：url:{},method:{},request:{},uriVariables:{}", url, method, requestEntity, uriVariables);
+        Long startTime = DateUtil.getCurrentDate().getTime();
+        logger.debug("请求信息：url:{},method:{},request:{},uriVariables:{},startTime:{}", url, method, requestEntity, uriVariables,startTime);
         ResponseEntity<T> responseEntity = null;
+
         try {
             responseEntity = super.exchange(url, method, requestEntity, responseType, uriVariables);
 
@@ -54,6 +57,8 @@ public class RestTemplate extends org.springframework.web.client.RestTemplate {
         } catch (Exception e) {
             logger.error("调用接口失败", e);
         }
+
+        logger.debug("-----------------------------------------------------------------------------------请求信息：costTime:{}-----------------------------------------------------------------------------------", DateUtil.getCurrentDate().getTime()-startTime);
 
         return responseEntity;
     }
