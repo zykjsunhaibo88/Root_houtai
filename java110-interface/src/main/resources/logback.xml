@@ -28,7 +28,7 @@
     <appender name="DEBUG_FRONT_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <File>./logs/front.log</File>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>./logs/debug-%d{yyyyMMdd}.log.%i</fileNamePattern>
+            <fileNamePattern>./logs/front-%d{yyyyMMdd}.log.%i</fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>500MB</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>
@@ -43,7 +43,7 @@
     <appender name="DEBUG_API_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <File>./logs/front.log</File>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>./logs/debug-%d{yyyyMMdd}.log.%i</fileNamePattern>
+            <fileNamePattern>./logs/api-%d{yyyyMMdd}.log.%i</fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>500MB</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>
